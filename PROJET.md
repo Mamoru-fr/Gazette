@@ -10,6 +10,7 @@ Source unique de vérité : ce registre. Chaque session de chantier y consigne s
 |---|---|---|---|---|---|
 | 1e | 22/11/2026 | Spec fonctionnelle V1 déposée (réponses du client du 21/11 consignées telles quelles, 5 besoins, 3 gates formels, frontières V1, questions client Q1–Q3, rôles régime client, témoin) — doc seule, zéro code | spec `24c7162` + réparation coquilles `50c8ad6` | Gate 1 (validation des specs) : attend la main du maître (issue #1) | 🔄 en place pour le matin du 22/11, conforme à la consigne du client |
 | 2e | 22/11/2026 | Verdict Gate 1 reçu du client : spec VALIDÉE ; retours intégrés (nom Gazette confirmé, style journal, DB laissée à la famille avec préférence externe, page « Connexion » RSS par copier-coller, sources de départ = JT sans obligation de 50, piste apprentissage/Marie Curie rejetée en V1) — spec amendée (§8), Q1–Q3 résolues | amendement Gate 1 (ce commit) | Gate 1 : ✅ VALIDÉE — issue #1 fermée ; Gate 2 (maquettes Norman) DÉVERROUILLÉE | ✅ consigné tel quel |
+| 3e | 22/11/2026 | Maquettes V1 (Gate 2, Norman) : trois vues style journal — la Une, l'article (barre Écouter une voix + Questionner avec dialogue Vibe oui/non, autre IA, app par défaut), Connexion (copier-coller + liste + compteur honnête) ; trois lois d'affichage, cinq recettes d'usage à froid, lignes de coupure laissées au client (typo, ordre de la une, mode sombre, mobile) — doc seule, zéro code | `48175f2` (doc maquettes + 3 SVG) | Gate 2 : attend le verdict du client (issue #2) | 🔄 en place, jamais enjambé |
 
 ## Journal
 
