@@ -1,6 +1,6 @@
 # Gazette — proposition de stack V1 (Gate 3)
 
-Doc seule, **zéro code** : aucun code applicatif ne sera écrit avant le verdict du client sur cette proposition (issue #5). Le verdict = feu vert au premier code. Rédigée par Ada, référence technique ; relue par la famille (Diderot project manager, Norman UX informé, Hopper critères en parallèle, Brunel pipeline derrière).
+Doc seule, **zéro code jusqu'au verdict** : le verdict du client est RENDU — **Next.js retenu (22/11)**, issue #5 fermée, premier code déverrouillé. Rédigée par Ada, référence technique ; relue par la famille (Diderot project manager, Norman UX informé, Hopper critères en parallèle, Brunel pipeline derrière).
 
 ## §0 — Les contraintes qui choisissent la stack (déduites de la spec validée et du verdict maquettes)
 
@@ -15,10 +15,12 @@ Doc seule, **zéro code** : aucun code applicatif ne sera écrit avant le verdic
 9. **La maquette V3 est la vérité d'interface** : sidebar desktop / bottom bar mobile, quatre vues, coins sticky à icônes SVG.
 10. **PRÉROGATIVE SÉCURITÉ DU CLIENT (retour du 22/11 sur la présente proposition, consignée telle quelle)** : « tout doit être sécurisé au point qu'il n'y ait quasiment aucune faille de sécurité, aucune faille exploitable par rapport à ce qui est connu. » C'est la seule limite posée ; elle est traitée comme une contrainte à part entière (voir §2 bis).
 11. **Le client créera lui-même la base de données et donnera les clés sur demande** (retour du 22/11 : « je vous donnerai les clés, il faudra juste me le demander ») — voir §4.
+12. **DÉCRET DU CLIENT SUR LA COURBE D'APPRENTISSAGE (verdict du 22/11, consigné tel quel)** : « réapprendre » une stack (Nuxt, Astro, SvelteKit…) n'est JAMAIS un argument ni une excuse — la famille apprend une stack neuve TRÈS VITE (GitHub, documentation), et chaque stack maîtrisée ouvre un champ supplémentaire pour les prochains outils du manoir. Ce critère ne départage plus rien ci-dessous.
+13. **VERDICT STACK (22/11)** : le client passe sur **Next.js** (« on peut passer sur du Next.js comme ce qui est proposé ») et laisse à la maison l'arbitrage « soit Next.js, soit Tauri pour suivre le manoir » — tranché au §2 ter : **Next.js pour Gazette V1**, Tauri piste future.
 
 ## §1 — Le ring : cinq stacks sérieuses, avantages et inconvénients (retour client du 22/11 : « proposer différentes stacks, voir les avantages et les inconvénients, puis faire une zone consensus, au risque que le fichier soit plus long » — servi)
 
-Toutes les cinq remplissent les conditions minimales (PWA installable, routes serveur pour le parsing RSS hors CORS, TypeScript, hébergement gratuit, DB externe connectable). Ce qui les départage est propre à GAZETTE : le lecteur vocal, le contenu NON FIABLE des flux, et le régime maison (le code muscle aussi la soutenance RNCP).
+Toutes les cinq remplissent les conditions minimales (PWA installable, routes serveur pour le parsing RSS hors CORS, TypeScript, hébergement gratuit, DB externe connectable). Ce qui les départage est propre à GAZETTE : le lecteur vocal, le contenu NON FIABLE des flux, et le régime maison (le code muscle aussi la soutenance RNCP). **Note du verdict (contrainte n°12)** : la courbe d'apprentissage d'une stack neuve ne compte plus au départage — les mentions de « muscle maison » dans les notes ci-dessous sont des constats d'expérience, JAMAIS des arguments ni des excuses ; chaque stack neuve maîtrisée est un champ ouvert pour les prochains outils du manoir.
 
 ### 1. Next.js 15 (React, App Router) — note maison : 19/20
 **Avantages** : écosystème n°1 (tutos, bibliothèques, réponse à tout problème) ; route handlers + middleware = parsing RSS propre et **en-têtes de sécurité centralisés** ; Vercel gratuit natif avec cron gratuit pour l'ingestion périodique ; PWA outillée ; **musculature maison déjà là** (Garde-Manger en Next, TS modèle pur : chaque ligne muscle la soutenance).
@@ -47,7 +49,7 @@ Toutes les cinq remplissent les conditions minimales (PWA installable, routes se
 **Ce qui départage, par ordre de poids pour ce projet** :
 1. **La prérogative sécurité (contrainte n°10)** : moins de code et de dépendances = SvelteKit et React Router gagnent en surface d'attaque ; mais l'OUTILLAGE de sécurité mature (middleware central pour CSP/HSTS, vulnérabilités vite patchées, Dependabot bien supporté) favorise Next.js et Nuxt. Bilan : à périmètre de fonctionnalité égale, l'écart se joue sur la DISCIPLINE plus que sur le framework — la §2 bis s'applique aux cinq.
 2. **Le cron d'ingestion gratuit** : Next.js (Vercel cron) et Nuxt (Nitro) l'ont natif ; les autres le fabriquent.
-3. **La musculature maison et la soutenance** : React, et du Next déjà pratiqué (Garde-Manger) — Next.js et React Router seulement.
+3. **La soutenance RNCP** : Next.js est déjà pratiqué (Garde-Manger) — mais depuis le décret du client (contrainte n°12), ce critère est SECONDAIRE : apprendre vite et ouvrir des champs au manoir vaut mieux qu'un muscle de confort ; il ne départage plus.
 4. **L'écosystème de secours** (lecteur vocal, PWA offline, incidents) : Next.js largement en tête.
 
 **CONSENSUS DE LA MAISON** : **Next.js reste la recommandation** (muscle + outillage sécurité + cron natif + écosystème), **SvelteKit est le dauphin honnête** si le client préfère la légèreté minimale, **React Router 7** la voie moyenne web-standards. Le client tranche ; son verdict porte TOUTE la famille technique d'un coup. La variation A décrite avant enrichissement (Next.js + fast-xml-parser en route API + Postgres externe + Drizzle + speechSynthesis) reste la déclinaison opérationnelle du choix Next.js.
@@ -61,6 +63,10 @@ Le contenu RSS est un INTRANT NON FIABLE (texte tiers). Engagements, vérifiable
 4. **Secrets** : URL de connexion et clés jamais au repo, variables d'hébergement uniquement (transmission par canal privé — le client donne les clés sur demande).
 5. **Entrées** : validation stricte de tout ce qui entre (URL de flux, paramètres de routes) ; rate limiting des routes API.
 6. **Contrôle** : Hopper tient une grille OWASP Top 10 sur Gazette et UNE GATE SÉCURITÉ obligatoire par fusion ; audit mensuel des dépendances consigné au registre.
+
+## §2 ter — L'arbitrage Tauri, tranché (le client a laissé le choix : « soit Next.js, soit Tauri pour suivre le manoir »)
+
+**Tranché : Next.js pour Gazette V1.** Pourquoi : Gazette est une PWA — installable au doigt (contrainte n°1) SANS passer par un store ni une intégration système ; maj instantanées à chaque visite, pas de version à retélécharger ; le cron d'ingestion RSS vit côté SERVEUR, où Tauri (application cliente) ne peut pas l'héberger gratuitement ; le lien s'ouvre dans n'importe quel navigateur, y compris chez un tiers. Tauri garde tout son sens pour une **version INSTALLÉE** future — convergence naturelle avec Suite Manoir (cœur natif Rust/Tauri), distribution bureau, offline profond : piste notée au registre des idées, HORS V1, jamais fermée.
 
 ## §3 — Schéma de données minimal (une seule vérité, rien de plus qu'exige la V1)
 
@@ -99,6 +105,6 @@ Rédigés par **Hopper, en parallèle** (sa bûche, sous-tâche de l'issue #5) �
 
 ## §10 — Témoin
 
-Le verdict du client sur l'issue #5 (cette proposition) ferme la porte et ouvre le premier code : develop + CI + premières tranches. Sans verdict : rien ne bouge.
+**VERDICT RENDU (22/11) : Next.js.** Le feu vert est donné — issue #5 fermée par le verdict, la porte ouvre sur le premier code : develop + CI + premières tranches. Les engagements §2 bis s'appliquent dès la première ligne.
 
 — Ada, référence technique, pour la famille Développement ; Armand coordination, Relance 19h15 du 22/11/2026. Doc seule, zéro code, aucune dépense, aucune donnée de tiers, aucun gate enjambé.
