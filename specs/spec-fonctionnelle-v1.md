@@ -6,7 +6,7 @@
 
 Le maître veut reprendre son JT d'actualité là où il vit le mieux : **« ça s'écoute plus que ça se lit — et derrière, ça se débat ». Le Slack étouffe ça.**
 
-Carte blanche donnée sur le nom, la méthode et le code, avec trois gates formels (§3). L'application s'appelle **Gazette** (nom posé par le repo du maitre, 21/11) — à confirmer par lui, jamais supposé acquis.
+Carte blanche donnée sur le nom, la méthode et le code, avec trois gates formels (§3). L'application s'appelle **Gazette** (nom posé par le repo du maître, 21/11) — à confirmer par lui, jamais supposé acquis.
 
 ## §1 — Les réponses du client (séance du 21/11, 22h00 — consignées telles quelles)
 
@@ -44,7 +44,7 @@ Rien ne saute ces étapes. La première version de Méridien, « littéralement 
 ## §5 — Questions client ouvertes (une par une, au fil de l'eau, jamais en bloc-tampon)
 
 - **Q1** — Le nom : « Gazette » (posé par votre repo) — gardé, ou un autre nom vous tente ?
-- **Q2** — La base de données que vous supposez pour l'ID des articles : celuui-ci se confirme en specs techniques (le « à confirmer » de votre réponse 4).
+- **Q2** — La base de données que vous supposez pour l'ID des articles : celui-ci se confirme en specs techniques (le « à confirmer » de votre réponse 4).
 - **Q3** — Les 50 flux V1 : vous les choisissez vous-même, ou la maison propose une première liste à partir des sources déjà suivies par le JT ?
 
 ## §6 — Qui fait quoi (régime client, tel que décrété)
