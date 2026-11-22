@@ -13,6 +13,8 @@ Doc seule, **zéro code** : aucun code applicatif ne sera écrit avant le verdic
 7. **DB externe préférée du client** — il peut la créer lui-même et fournir l'ID (spéc §8, réponse 3).
 8. **Hébergement gratuit exigé** (interdits V1).
 9. **La maquette V3 est la vérité d'interface** : sidebar desktop / bottom bar mobile, quatre vues, coins sticky à icônes SVG.
+10. **PRÉROGATIVE SÉCURITÉ DU CLIENT (retour du 22/11 sur la présente proposition, consignée telle quelle)** : « tout doit être sécurisé au point qu'il n'y ait quasiment aucune faille de sécurité, aucune faille exploitable par rapport à ce qui est connu. » C'est la seule limite posée ; elle est traitée comme une contrainte à part entière (voir §2 bis).
+11. **Le client créera lui-même la base de données et donnera les clés sur demande** (retour du 22/11 : « je vous donnerai les clés, il faudra juste me le demander ») — voir §4.
 
 ## §1 — Variation A (RECOMMANDÉE) : PWA Next.js + route API + Postgres externe
 
@@ -39,6 +41,8 @@ Doc seule, **zéro code** : aucun code applicatif ne sera écrit avant le verdic
 ## §4 — Q2 : recommandation DB (réponse à la question du client : « les RSS ne suffiraient-ils pas ? »)
 
 **Recommandation : OUI, une DB, EXTERNE.** Raisons : ① le pré-message exige un ID stable, qu'un flux ne garantit pas au-delà de sa fenêtre ; ② l'historique (« regarder hier ») ; ③ la question du client « DB réservée aux articles du manoir ? » — réponse : la même base sert tout le monde, table unique, l'informateur y écrit ses pages ; ④ « appelable n'importe quand » = externe, tel qu'il l'a conseillé.
+
+**Le client a confirmé (22/11) : il créera la base lui-même et remettra les clés dès que la maison les demandera.** La demande partira au feu vert du verdict stack, jamais avant.
 
 **Marche à suivre pour que le client crée la base** : créer un Postgres gratuit (Neon : neon.tech, ou Supabase — aucune carte requise sur l'offre gratuite, à confirmer ensemble avant création) ; copier l'URL de connexion (c'est l'« ID ») ; la transmettre à la maison par un canal privé (elle vivra en variable secrète d'hébergement, jamais au repo) ; la maison applique les migrations. Si le client préfère, la maison propose un choix guidé en séance.
 
