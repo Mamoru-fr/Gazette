@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Gazette — maquette V3, application mobile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>*{box-sizing:border-box;margin:0}
+:root{--bg:#f8f3e7;--ink:#37312a;--soft:#8a8172;--line:#e9dfc9;--accent:#b4551e;--paper:#fdfbf5}
+body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.7}
+button{font-family:inherit;cursor:pointer}
+.scene{background:transparent}
+.wrap{max-width:680px;margin:0 auto;padding:0 26px 90px}
+.marque{font-variant:small-caps;letter-spacing:.16em;font-size:15px;color:var(--soft)}
+.marque b{color:var(--accent);font-weight:normal}
+.greeting{padding:34px 0 6px}
+.greeting h1{font-weight:normal;font-size:25px}
+.greeting p{font-size:14px;color:var(--soft);margin-top:4px}
+.filet{border:0;border-top:1px solid var(--line);margin:24px 0}
+.entree{display:flex;gap:18px;padding:24px 4px;border-bottom:1px solid var(--line);cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;font-size:inherit;color:inherit}
+.entree:hover h2{color:var(--accent)}
+.entree-corps{flex:1;min-width:0}
+.kicker{font-size:11px;letter-spacing:.18em;font-variant:small-caps;color:var(--accent);margin-bottom:8px}
+.entree h2{font-weight:normal;font-size:21px;line-height:1.3}
+.entree p{font-size:15px;color:var(--soft);margin-top:8px}
+.entree .meta{font-size:12px;color:var(--soft);font-variant:small-caps;letter-spacing:.08em;margin-top:10px}
+.entree.grande h2{font-size:26px}
+.note{font-style:italic;font-size:13.5px;color:#9c8266;margin-top:8px}
+.note b{font-style:normal;font-weight:normal;color:var(--accent);font-variant:small-caps;font-size:11px;letter-spacing:.12em;margin-right:6px}
+.visuel{flex:0 0 92px;width:92px;height:92px;border-radius:4px;overflow:hidden;background:var(--line)}
+.visuel img{width:100%;height:100%;object-fit:cover;display:block}
+.visuel.nophoto{background:linear-gradient(150deg,#e9dfc9,#d9cbae)}
+.visuel.nophoto span{display:flex;width:100%;height:100%;align-items:center;justify-content:center;font-variant:small-caps;letter-spacing:.12em;font-size:10px;color:var(--soft);text-align:center;padding:4px}
+.grande .visuel{flex-basis:168px;width:168px;height:120px}
+.pause{text-align:center;color:var(--soft);font-size:12px;font-variant:small-caps;letter-spacing:.14em;padding:24px 0}
+.plus{display:block;width:100%;margin-top:6px;padding:15px;font-size:13.5px;letter-spacing:.08em;font-variant:small-caps;color:var(--soft);background:transparent;border:1.5px solid var(--line);border-radius:3px}
+.plus:hover:not(:disabled){color:var(--accent);border-color:var(--accent)}
+.plus:disabled{opacity:.55;cursor:default}
+.foot{margin-top:40px;border-top:1px solid var(--line);padding:16px 0 40px;font-size:11.5px;color:var(--soft);text-align:center}
+/* article */
+.retour{background:none;border:0;color:var(--soft);font-variant:small-caps;letter-spacing:.1em;font-size:12.5px;padding:22px 0 4px}
+.retour:hover{color:var(--accent)}
+.art h1{font-weight:normal;font-size:30px;line-height:1.25;margin-top:16px}
+.art .surtitre{font-size:11px;letter-spacing:.18em;font-variant:small-caps;color:var(--accent);margin-top:22px}
+.art .meta{font-size:12.5px;color:var(--soft);font-variant:small-caps;letter-spacing:.08em;margin-top:8px}
+.hero{border-radius:4px;overflow:hidden;margin:22px 0 6px;background:var(--line)}
+.hero img{width:100%;height:230px;object-fit:cover;display:block}
+.hero.nophoto{height:110px;background:linear-gradient(150deg,#e9dfc9,#d9cbae)}
+.art-extrait{font-size:16.5px;color:#5e5647;margin:14px 0 6px;padding-left:14px;border-left:3px solid var(--accent);font-style:italic}
+.corps p{margin:16px 0;font-size:16.5px;max-width:64ch}
+.actions{display:flex;gap:12px;margin:28px 0 8px;flex-wrap:wrap}
+.action{flex:1;min-width:200px;padding:14px 18px;font-size:13px;letter-spacing:.08em;font-variant:small-caps;background:transparent;border:1.5px solid var(--accent);border-radius:3px;color:var(--accent)}
+.action:hover{background:var(--accent);color:var(--paper)}
+.joueur{margin:14px 0;padding:14px 16px;border:1.5px solid var(--line);border-radius:4px;font-size:12.5px;color:var(--soft);font-variant:small-caps;letter-spacing:.08em}
+.joueur .barre{height:4px;background:var(--line);border-radius:2px;margin-top:10px;overflow:hidden}
+.joueur .barre i{display:block;height:100%;width:0;background:var(--accent)}
+.joueur.lecture .barre i{animation:avance 60s linear infinite}
+.joueur.lecture::before{content:'● lecture en cours — voix unique (V1)';color:var(--accent)}
+.joueur:not(.lecture)::before{content:'lecture en pause — appuyez sur Écouter'}
+@keyframes avance{from{width:0}to{width:100%}}
+/* informateur */
+.lettre{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:30px 32px;margin-top:26px}
+.lettre h2{font-weight:normal;font-size:24px;margin-top:4px}
+.lettre .date{font-size:12px;color:var(--soft);font-variant:small-caps;letter-spacing:.1em;margin-top:6px}
+.lettre p{margin:16px 0;font-size:15.5px}
+.a-retenir{margin-top:8px;padding-left:20px}
+.a-retenir li{margin:10px 0;font-size:15px}
+.lettre .signe{text-align:right;font-style:italic;color:var(--soft);margin-top:18px;font-size:14px}
+/* flux */
+.vue-titre{font-weight:normal;font-size:24px;margin:28px 0 4px}
+.vue-sous{font-size:13.5px;color:var(--soft);margin-bottom:10px}
+.ajout{display:flex;gap:10px;margin:18px 0 8px;flex-wrap:wrap}
+.ajout input{flex:1;min-width:240px;padding:12px 14px;font-family:inherit;font-size:14px;border:1.5px solid var(--line);border-radius:3px;background:var(--paper);color:var(--ink)}
+.ajout button{padding:12px 18px;font-size:13px;letter-spacing:.08em;font-variant:small-caps;background:transparent;border:1.5px solid var(--accent);border-radius:3px;color:var(--accent)}
+.ajout button:hover{background:var(--accent);color:var(--paper)}
+.liste-flux{list-style:none;margin-top:16px}
+.liste-flux li{display:flex;align-items:baseline;gap:10px;padding:13px 4px;border-bottom:1px solid var(--line);font-size:14.5px}
+.puce{display:inline-block;width:8px;height:8px;border-radius:50%;background:#8fa873;flex:0 0 auto;margin-top:8px}
+.puce.nouvelle{background:var(--accent)}
+.compteur-ligne{font-size:12px;color:var(--soft);font-variant:small-caps;letter-spacing:.08em;margin-top:18px}
+/* dialogue questionner */
+.voile{position:fixed;inset:0;background:rgba(55,49,42,.35);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.defile{background:var(--paper);border-radius:6px;max-width:520px;width:100%;padding:28px 30px;box-shadow:0 18px 50px rgba(55,49,42,.25)}
+.defile h3{font-weight:normal;font-size:21px;margin-bottom:6px}
+.premsg{font-size:13px;color:var(--soft);font-style:italic;border-left:3px solid var(--line);padding-left:12px;margin:14px 0}
+.defile textarea{width:100%;min-height:90px;padding:12px;font-family:inherit;font-size:14.5px;border:1.5px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);margin-top:6px;resize:vertical}
+.choix{display:flex;gap:10px;margin-top:14px;font-size:14px;color:var(--ink);align-items:center}
+.choix label{display:flex;gap:6px;align-items:center;font-size:13.5px}
+.choix label+label{margin-left:18px}
+.memo{display:flex;gap:6px;align-items:center;margin-top:12px;font-size:12.5px;color:var(--soft)}
+.defile-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+.defile-actions button{padding:10px 18px;font-size:12.5px;letter-spacing:.08em;font-variant:small-caps;border-radius:3px;border:1.5px solid var(--line);background:transparent;color:var(--soft)}
+.defile-actions .envoyer{border-color:var(--accent);color:var(--accent)}
+.defile-actions .envoyer:hover{background:var(--accent);color:var(--paper)}
+.appbar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 18px 12px;display:flex;justify-content:space-between;align-items:baseline}
+.appbar .marque{font-size:13.5px}
+.appbar .date{font-size:11px;color:var(--soft);font-variant:small-caps;letter-spacing:.1em}
+.scene{padding-bottom:88px}
+.wrap{max-width:none;padding:0 18px 40px}
+.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:10;background:var(--paper);border-top:1px solid var(--line);display:flex}
+.tab{flex:1;background:none;border:0;padding:14px 0 16px;font-size:12.5px;letter-spacing:.06em;font-variant:small-caps;color:var(--soft)}
+.tab.on{color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.greeting{padding:22px 0 4px}
+.greeting h1{font-size:21px}
+.entree{padding:20px 2px;gap:14px}
+.entree h2{font-size:18.5px}
+.entree.grande h2{font-size:21.5px}
+.entree p{font-size:13.5px}
+.visuel{flex-basis:72px;width:72px;height:72px}
+.grande .visuel{flex-basis:104px;width:104px;height:104px}
+.art h1{font-size:24px}
+.hero img{height:170px}
+.art-extrait,.corps p{font-size:15.5px}
+.lettre{padding:22px 20px;margin-top:18px}</style>
+</head>
+<body>
+<header class="appbar"><span class="marque">La <b>Gazette</b></span><span class="date">dimanche 22 novembre</span></header>
+<main class="scene">
+<section data-vue="accueil"><div class="wrap">
+<section class="greeting">
+<h1>Bonjour. Il y a six textes qui vous attendent.</h1>
+<p>Dimanche 22 novembre · 7 flux connectés (plafond V1 : 50, jamais une limite d'architecture) · lecture estimée : 34 minutes</p>
+</section>
+<hr class="filet">
+<button class="entree grande" data-ouvrir="gzt-481">
+<div class="visuel" data-marque="Next INpact"><img src="https://picsum.photos/seed/gzt-europe/240/240" alt="Illustration" loading="lazy"></div>
+<div class="entree-corps"><div class="kicker">À la une, aujourd'hui</div><h2>Le feu vert de Bruxelles : l'Europe remet l'open source au centre de sa table</h2><p>Après dix-huit mois de tractations, la Commission est à deux votes d'un texte qui restaurerait l'IA ouverte. Une bataille de vocabulaire — et de souveraineté.</p><p class="note"><b>L'informateur</b>retenu parce que ce texte décidera de ce que vos outils auront le droit d'être.</p><p class="meta">Next INpact · 15h48 · 4 min</p></div>
+</button>
+<button class="entree" data-ouvrir="gzt-482"><div class="visuel" data-marque="Le Monde"><img src="https://picsum.photos/seed/gzt-climat/240/240" alt="Illustration" loading="lazy"></div><div class="entree-corps"><h2>Sommet climatique : dans les coulisses d'une parenthèse</h2><p>Ce qui se joue vraiment derrière les portes closes de Marseille, jour après jour.</p><p class="note"><b>L'informateur</b>gardé pour sa méthode : le jour en coulisses, pas le communiqué.</p><p class="meta">Le Monde · 19h02 · 7 min</p></div></button>
+<button class="entree" data-ouvrir="gzt-483"><div class="visuel" data-marque="CNRS"><img src="https://picsum.photos/seed/gzt-beauce/240/240" alt="Illustration" loading="lazy"></div><div class="entree-corps"><h2>Sous la Beauce, un accélérateur de particules : la première image</h2><p>La photographie au visible d'un instrument enterré sous trente mètres de craie.</p><p class="note"><b>L'informateur</b>la première image au visible d'une machine invisible, ça ne vient qu'une fois.</p><p class="meta">CNRS Le Journal · 16h15 · 5 min</p></div></button>
+<button class="entree" data-ouvrir="gzt-486"><div class="visuel" data-marque="JDD"><img src="https://picsum.photos/seed/gzt-raviolis/240/240" alt="Illustration" loading="lazy"></div><div class="entree-corps"><h2>Chronique : le dimanche des raviolis</h2><p>Le festin discret d'une table ordinaire, par le Journal du Dimanche.</p><p class="note"><b>L'informateur</b>le dimanche a droit à sa chronique.</p><p class="meta">Journal du Dimanche · 09h30 · 3 min</p></div></button>
+<p class="pause">— c'est tout pour aujourd'hui. Le reste dort sans honte —</p>
+<button class="plus" id="btn-hier">charger les textes d'hier</button>
+<div id="hier" style="display:none">
+<button class="entree" data-ouvrir="gzt-484"><div class="visuel" data-marque="Le Monde"><img src="https://picsum.photos/seed/gzt-prix/240/240" alt="Illustration" loading="lazy"></div><div class="entree-corps"><h2>Littérature : ce que les prix oublient</h2><p>Envoyée spéciale au cœur de la saison des listes, côté libraries.</p><p class="meta">Le Monde · hier · 9 min</p></div></button>
+<button class="entree" data-ouvrir="gzt-485"><div class="visuel" data-marque="Courrier int."><img src="https://picsum.photos/seed/gzt-ecosse/240/240" alt="Illustration" loading="lazy"></div><div class="entree-corps"><h2>Écosse : l'expérience d'un parlement qui siège en dialecte</h2><p>Un laboratoire linguistique parlementaire unique en Europe.</p><p class="meta">Courrier international · hier · 6 min</p></div></button>
+</div>
+<p class="foot">Maquette V3 — génération « application » : navigation réelle, habitude d'app — peau Crème, images des flux</p>
+</div></section><section data-vue="article"><div class="wrap">
+<article class="art">
+<button class="retour" data-nav="accueil">← Aujourd'hui</button>
+<div class="surtitre">Gazette · l'article ouvert</div>
+<h1 id="art-titre"></h1>
+<p class="meta" id="art-meta"></p>
+<figure class="hero" id="art-hero"><img id="art-img" alt="Illustration de l'article"></figure>
+<p class="art-extrait" id="art-extrait"></p>
+<div class="corps" id="art-corps"></div>
+<div class="actions">
+<button class="action" data-ecouter>Écouter — voix unique</button>
+<button class="action" data-questionner>Questionner l'article</button>
+</div>
+<div class="joueur" id="joueur"><div class="barre"><i></i></div></div>
+</article>
+<p class="foot">Maquette V3 — l'interface de lecture n'apparaît qu'ici : le lieu stocke, l'article s'ouvre.</p>
+</div></section><section data-vue="informateur"><div class="wrap">
+<header class="greeting"><h1>L'Informateur</h1><p>Le briefing du Manoir, dit comme il se lit.</p></header>
+<div class="lettre">
+<div class="kicker">Le mot de l'informateur</div>
+<h2>Dimanche 22 novembre — six textes, une journée</h2>
+<p class="date">rédigé le matin, relu avant l'envoi</p>
+<p>Trois couleurs dans la file du jour : la règle (Bruxelles et l'open source — deux votes, et vos outils changent de siècle), la méthode (Marseille en coulisses, la Beauce photographiée sous la craie), et le dimanche (les raviolis, qui n'ont besoin de personne).</p>
+<p>Si vous ne devez lire qu'un texte : celui de Bruxelles. Si vous n'avez que trois minutes : la chronique. Le reste attend sans rien perdre.</p>
+<ul class="a-retenir">
+<li>Le feu vert de Bruxelles — le texte qui décidera de ce que vos outils auront le droit d'être.</li>
+<li>Marseille : les seuils vrais se négocient en couloir, pas dans le communiqué.</li>
+<li>Trente mètres de craie, une image de naissance : la Beauce au visible.</li>
+</ul>
+<p class="signe">— l'informateur (Armand / Orion, V1)</p>
+</div>
+<p class="foot">Maquette V3 — l'informateur résume, vous décidez de lire.</p>
+</div></section><section data-vue="flux"><div class="wrap">
+<header class="greeting"><h1>Vos flux</h1><p>Collez l'adresse d'un flux RSS, telle quelle. La Gazette fait le reste.</p></header>
+<form class="ajout">
+<input id="url-flux" type="text" placeholder="https://exemple.fr/feed.xml" aria-label="Adresse du flux RSS">
+<button type="submit">Ajouter le flux</button>
+</form>
+<ul class="liste-flux" id="liste-flux">
+<li><span class="puce"></span> Next INpact — 2 textes aujourd'hui</li>
+<li><span class="puce"></span> Le Monde — 2 textes aujourd'hui</li>
+<li><span class="puce"></span> CNRS Le Journal — 1 texte aujourd'hui</li>
+<li><span class="puce"></span> Courrier international — 1 texte aujourd'hui</li>
+<li><span class="puce"></span> Journal du Dimanche — 1 texte aujourd'hui</li>
+<li><span class="puce"></span> Le Torrent — rien de neuf</li>
+<li><span class="puite puce" style="visibility:hidden"></span><span style="color:var(--soft);font-size:13px;font-style:italic">… et le reste des.sources du JT</span></li>
+</ul>
+<p class="compteur-ligne">compteur honnête : <b id="compteur">7 / 50</b> — le plafond V1 n'est jamais une limite d'architecture</p>
+<p class="foot">Maquette V3 — la page Connexion au mot du client : ajout d'un flux par copier-coller.</p>
+</div></section>
+</main>
+<nav class="tabbar">
+<button class="tab on" data-nav="accueil">Aujourd'hui</button>
+<button class="tab" data-nav="informateur">Informateur</button>
+<button class="tab" data-nav="flux">Vos flux</button>
+</nav>
+<div class="voile" id="voile" role="dialog" aria-modal="true" aria-label="Questionner l'article">
+<div class="defile">
+<h3>Questionner cet article</h3>
+<p class="premsg" id="q-pre"></p>
+<label for="q-texte" style="font-size:13px;color:var(--soft)">Votre question :</label>
+<textarea id="q-texte" placeholder="…" aria-label="Votre question"></textarea>
+<div class="choix">
+<span style="font-size:12.5px;color:var(--soft);font-variant:small-caps;letter-spacing:.08em">envoyer vers :</span>
+<label><input type="radio" name="ia" checked> Vibe</label>
+<label><input type="radio" name="ia"> autre IA de chat</label>
+</div>
+<label class="memo"><input type="checkbox" checked> mémoriser comme choix par défaut</label>
+<div class="defile-actions">
+<button data-fermer>Annuler</button>
+<button class="envoyer" data-fermer>Envoyer</button>
+</div>
+</div>
+</div>
+<script>var ARTICLES = {
+  "gzt-481": {
+    titre: "Le feu vert de Bruxelles : l'Europe remet l'open source au centre de sa table",
+    source: "Next INpact", heure: "15h48", duree: "4 min", seed: "gzt-europe", une: true,
+    extrait: "Après dix-huit mois de tractations, la Commission est à deux votes d'un texte qui restaurerait l'IA ouverte. Une bataille de vocabulaire — et de souveraineté.",
+    corps: [
+      "C'est un feu vert passé presque inaperçu, un mardi soir, au cinquième étage du bâtique Berlaymont : le comité des représentants permanents a dégagé une majorité fragile mais réelle pour réintroduire l'exception open source dans le règlement en préparation. Une phrase de trente mots,ForObject en apparence — et des années de lobbying renversées.",
+      "Car derrière le vocabulaire se joue une question de souveraineté. Les modèles ouverts peuvent être audités, hébergés localement, corrigés par des tiers : c'est exactement ce que la Commission demandait à grands cris depuis trois ans. Ce que le texte précédent aurait interdit par ricochet, en verrouillant chaque déploiement derrière une certification coûteuse.",
+      "Les éditeurs propriétaires y voient un sceau donné à l'amateurisme ; les chercheurs, une porte enfin ouverte. Entre les deux, les mûrs d'ingénieurs qui construiront les outils publics du prochain budget Union. Pour eux, la différence entre « ouvert » et « certifié » se chiffre en mois de travail.",
+      "Restent deux votes — une lecture au Parlement, une adoption finale — et une fenêtre de six mois pendant laquelle tout peut encore bouger. Le texte est sur la table ; la table, elle, ne demande qu'à rester.",
+      "Dans le Manoir Santos, ce texte décidera de ce que vos outils auront le droit d'être : c'est pour cela qu'il ouvre la gazette du jour."
+    ]
+  },
+  "gzt-482": {
+    titre: "Sommet climatique : dans les coulisses d'une parenthèse",
+    source: "Le Monde", heure: "19h02", duree: "7 min", seed: "gzt-climat",
+    extrait: "Ce qui se joue vraiment derrière les portes closes de Marseille, jour après jour.",
+    corps: [
+      "Marseille, ce dimanche. Dans les couloirs du sommet, on parle moins des engagements que des parenthèses : chaque virgule du texte final fera ou défera une filière industrielle.",
+      "Les délégations alternent séances plénières et réunions de couloir, où se négocient les vrais seuils — ceux que personne n'écrira dans le communiqué.",
+      "À suivre. (Corps d'exemple pour la maquette : la suite du texte vivra dans l'application réelle, nourrie du flux.)"
+    ]
+  },
+  "gzt-483": {
+    titre: "Sous la Beauce, un accélérateur de particules : la première image",
+    source: "CNRS Le Journal", heure: "16h15", duree: "5 min", seed: "gzt-beauce",
+    extrait: "La photographie au visible d'un instrument enterré sous trente mètres de craie.",
+    corps: [
+      "Trente mètres de craie séparent l'instrument du ciel ; une première photographie au visible vient de montrer sa chambre à vide, éclairée comme une nef.",
+      "Les équipes parlent d'une « image de naissance » : avant les premières données, avant même les premières collisions, voir la machine.",
+      "Suite du texte : exemple de maquette, nourrie du flux dans l'application réelle."
+    ]
+  },
+  "gzt-484": {
+    titre: "Littérature : ce que les prix oublient",
+    source: "Le Monde", heure: "14h20", duree: "9 min", seed: "gzt-prix",
+    extrait: "Envoyée spéciale au cœur de la saison des listes, côté libraries.",
+    corps: [
+      "La saison des prix commence toujours pareil : des listes, des déjeuners, des silences. Et à chaque saison, les mêmes absences.",
+      "Côté libraries, on voit passer les romans qu'on ne lira qu'en janvier, quand la fièvre sera retombée.",
+      "Corps d'exemple pour la maquette — la vraie longueur viendra du flux."
+    ]
+  },
+  "gzt-485": {
+    titre: "Écosse : l'expérience d'un parlement qui siège en dialecte",
+    source: "Courrier international", heure: "12h33", duree: "6 min", seed: "gzt-ecosse",
+    extrait: "Un laboratoire linguistique parlementaire unique en Europe.",
+    corps: [
+      "Un parlement qui siège en dialecte : l'expérience écossaise折腾 autant les sténographes que les grammairiens.",
+      "Hansard local publie chaque session en deux colonnes — une rareté documentaire en Europe.",
+      "Corps d'exemple pour la maquette."
+    ]
+  },
+  "gzt-486": {
+    titre: "Chronique : le dimanche des raviolis",
+    source: "Journal du Dimanche", heure: "09h30", duree: "3 min", seed: "gzt-raviolis",
+    extrait: "Le festin discret d'une table ordinaire, par le Journal du Dimanche.",
+    corps: [
+      "Il y a des dimanches qui se comptent en raviolis. La table ordinaire devient un festin discret.",
+      "La chronique du jour sert peu de chose et beaucoup d'attention.",
+      "Corps d'exemple pour la maquette."
+    ]
+  }
+};
+function montrer(vue){
+  document.querySelectorAll('[data-vue]').forEach(function(e){ e.style.display = (e.dataset.vue===vue) ? '' : 'none'; });
+  document.querySelectorAll('[data-nav]').forEach(function(b){ b.classList.toggle('on', b.dataset.nav===vue); });
+  document.querySelector('.scene').scrollTop = 0;
+  window.scrollTo(0,0);
+}
+document.addEventListener('click', function(ev){
+  var nav = ev.target.closest('[data-nav]');
+  if (nav){ montrer(nav.dataset.nav); }
+  var ouvrir = ev.target.closest('[data-ouvrir]');
+  if (ouvrir){ ouvrirArticle(ouvrir.dataset.ouvrir); }
+  if (ev.target.closest('[data-questionner]')){ ouvrirQuestionner(); }
+  if (ev.target.closest('[data-fermer]')){ document.getElementById('voile').style.display='none'; }
+  if (ev.target.closest('[data-ecouter]')){ basculerLecture(); }
+  if (ev.target.closest('#voile')){ document.getElementById('voile').style.display='none'; }
+});
+function ouvrirArticle(id){
+  var a = ARTICLES[id]; if(!a) return;
+  document.getElementById('art-titre').textContent = a.titre;
+  document.getElementById('art-meta').textContent = a.source + ' · dimanche 22 novembre · ' + a.heure + ' · ' + a.duree + ' · ID ' + id;
+  document.getElementById('art-extrait').textContent = a.extrait;
+  var im = document.getElementById('art-img');
+  im.src = 'https://picsum.photos/seed/' + a.seed + '/960/460';
+  im.parentElement.classList.remove('nophoto');
+  document.getElementById('art-corps').innerHTML = a.corps.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+  document.getElementById('q-pre').textContent = 'Pré-message envoyé avec la question : « Voici l'article « ' + a.titre + ' » — ID ' + id + '. « ' + a.extrait + ' » Voici ma question : »';
+  document.getElementById('joueur').classList.remove('lecture');
+  montrer('article');
+}
+function ouvrirQuestionner(){ document.getElementById('voile').style.display='flex'; }
+function basculerLecture(){ document.getElementById('joueur').classList.toggle('lecture'); }
+document.querySelectorAll('.visuel img, .hero img').forEach(function(im){
+  im.addEventListener('error', function(){
+    var v = im.parentElement;
+    if (v.classList.contains('hero')){ v.classList.add('nophoto'); im.remove(); return; }
+    v.classList.add('nophoto');
+    v.innerHTML = '<span>' + (v.dataset.marque || 'sans image') + '</span>';
+  });
+});
+var hierCharge = false;
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest('#btn-hier');
+  if (!b || hierCharge) return;
+  hierCharge = true;
+  document.getElementById('hier').style.display = '';
+  b.disabled = true; b.textContent = 'hier est déjà dans la file';
+});
+document.addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var i = document.getElementById('url-flux');
+  if (!i || !i.value) return;
+  var li = document.createElement('li');
+  li.innerHTML = '<span class="puce nouvelle"></span> flux ajouté : ' + i.value.replace(/[<>&]/g, '') + ' — vérification à la première synchronisation';
+  document.getElementById('liste-flux').appendChild(li);
+  i.value = '';
+  var c = document.getElementById('compteur'); c.textContent = (parseInt(c.textContent,10)+1) + ' / 50';
+});
+montrer('accueil');</script>
+</body>
+</html>
