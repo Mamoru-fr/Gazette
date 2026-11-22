@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Laboratoire de palettes — Gazette (maquette v2)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --bg:#fdfcf8; --ink:#1f1d1a; --soft:#6b675f; --line:#e8e4da; --accent:#0b57d0; --accentsoft:#e8effc; --paper:#fdfcf8;
+}
+body.creme{ --bg:#f8f3e7; --ink:#37312a; --soft:#837b6d; --line:#e6dcc6; --accent:#b4551e; --accentsoft:#f6e8db; --paper:#f8f3e7; }
+body.sepia{ --bg:#f3ead6; --ink:#40352a; --soft:#8a7d68; --line:#ddcfae; --accent:#9a6b2f; --accentsoft:#f1e6cd; --paper:#f6eedd; }
+body.nuit{ --bg:#191922; --ink:#e9e4d8; --soft:#a09a8c; --line:#33323f; --accent:#f0b44f; --accentsoft:#2a2836; --paper:#1e1e28; }
+*{box-sizing:border-box;margin:0}
+body{font-family:Georgia,'Times New Roman',serif;line-height:1.65;background:var(--bg);color:var(--ink);transition:background .25s ease,color .25s ease}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 30px 70px}
+.labbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:6px}
+.labbar .titre{font-variant:small-caps;letter-spacing:.14em;font-size:13px;color:var(--soft);margin-right:auto}
+.pill{font-family:inherit;font-size:13px;letter-spacing:.06em;padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.pill.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.note{font-family:'Courier New',monospace;font-size:11.5px;color:var(--soft);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:26px}
+.top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double var(--ink);padding:14px 0 10px}
+.brand{font-variant:small-caps;letter-spacing:.14em;font-size:15px}
+.brand b{color:var(--accent)}
+.date{font-size:12px;color:var(--soft)}
+nav{display:flex;gap:20px;font-size:13.5px;margin-top:8px}
+nav span{cursor:pointer;color:var(--soft)}
+nav span.on{color:var(--accent);border-bottom:2px solid var(--accent)}
+.kicker{font-variant:small-caps;letter-spacing:.2em;font-size:12px;color:var(--accent);margin:32px 0 8px}
+h1{font-weight:normal;font-size:36px;line-height:1.18;margin-bottom:10px}
+.chapeau{font-style:italic;color:var(--soft);font-size:16.5px;max-width:640px}
+.meta{font-size:12px;color:var(--soft);margin:10px 0 0;font-variant:small-caps;letter-spacing:.08em}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.14em;font-variant:small-caps;color:var(--bg);background:var(--accent);padding:2px 8px;border-radius:2px}
+hr.filet{border:0;border-top:1px solid var(--line);margin:32px 0}
+.cols{column-count:3;column-gap:32px}
+.item{break-inside:avoid;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.item h2{font-weight:normal;font-size:17px;line-height:1.25;margin:2px 0 4px}
+.item .src{font-size:11.5px;color:var(--accent);font-variant:small-caps;letter-spacing:.1em}
+.actions{margin-top:34px;border-top:3px double var(--ink);padding-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:inherit;font-size:14px;letter-spacing:.08em;font-variant:small-caps;padding:9px 18px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;border-radius:2px}
+.btn.plein{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.foot{margin-top:44px;border-top:1px solid var(--line);padding:10px 30px 30px;font-size:11.5px;color:var(--soft);text-align:center}
+</style>
+</head>
+<body class="encre">
+<div class="wrap">
+<div class="labbar">
+<span class="titre">Laboratoire de palettes — même page, quatre peaux, votre œil tranche</span>
+<button class="pill on" onclick="setTheme('encre',this)">Encre fraîche</button>
+<button class="pill" onclick="setTheme('creme',this)">Crème</button>
+<button class="pill" onclick="setTheme('sepia',this)">Sépia</button>
+<button class="pill" onclick="setTheme('nuit',this)">Nuit</button>
+</div>
+<p class="note">recherche : fond blanc cassé chaud / texte gris très foncé (contraste modéré, jamais noir pur sur blanc pur) / un accent vif unique pour la hiérarchie — aucune impression à froid, tout sourcé au doc maquettes-v2.md</p>
+
+<div class="top">
+<span class="date">dimanche 22 novembre · 7 flux · 50 max (jamais une limite d'architecture)</span>
+<span class="brand">La <b>Gazette</b> du Manoir — Kiosque</span>
+<nav><span class="on">Kiosque</span><span>Bibliothèque</span><span>Informateur</span><span>Connexion</span></nav>
+</div>
+
+<div class="kicker">À la une</div>
+<h1>Le feu vert de Bruxelles : l'Europe remet l'open source au centre de sa table</h1>
+<p class="chapeau">Après dix-huit mois de tractations, la Commission est à deux votes d'un texte qui restaurerait l'IA ouverte. Retour sur une bataille de vocabulaire — et de souveraineté.</p>
+<p class="meta">Next INpact · dimanche 22 novembre · ID en base : gzt-481 · <span class="tag">lire l'article</span></p>
+<hr class="filet">
+<div class="cols">
+<div class="item"><span class="src">Le Monde · 19h02</span><h2>Sommet climatique : dans les coulisses d'une parenthèse</h2></div>
+<div class="item"><span class="src">France Info · 17h40</span><h2>Transports : le nouveau train de nuit monté d'un cran</h2></div>
+<div class="item"><span class="src">CNRS · 16h15</span><h2>Sous la Beauce, un accélérateur de particules : la première image</h2></div>
+<div class="item"><span class="src">Le Monde · 14h20</span><h2>Littérature : ce que les prix oublient</h2></div>
+<div class="item"><span class="src">Courrier international · 12h33</span><h2>Écosse : un parlement qui siège en dialecte</h2></div>
+<div class="item"><span class="src">Journal du Dimanche · 09h30</span><h2>Chronique : le dimanche des raviolis</h2></div>
+</div>
+
+<div class="actions">
+<button class="btn plein">Questionner cet article</button>
+<button class="btn">Écouter (une voix)</button>
+</div>
+</div>
+<p class="foot">Maquette v2 — laboratoire de palettes · quatre peaux sur le même kiosque · le client garde la peau qui donne envie de lire</p>
+<script>
+function setTheme(name,btn){
+  document.body.className = name;
+  document.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('on'); });
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
