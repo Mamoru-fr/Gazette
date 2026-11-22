@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="620" viewBox="0 0 880 620" font-family="Georgia, 'Times New Roman', serif">
+<rect width="880" height="620" fill="#faf7f0"/>
+<text x="60" y="56" font-size="14" fill="#8c1c13">‹ Une</text>
+<text x="838" y="56" text-anchor="end" font-size="12" fill="#888">GAZETTE · article</text>
+<line x1="60" y1="70" x2="820" y2="70" stroke="#1a1a1a" stroke-width="2"/>
+<text x="60" y="116" font-size="27" fill="#1a1a1a">Correction IA : les marchés cherchent leur ligne</text>
+<text x="60" y="146" font-size="13" fill="#444">LE MONDE · dimanche 22 novembre 2026 · ID en base : gzt-481</text>
+<line x1="60" y1="162" x2="180" y2="162" stroke="#8c1c13" stroke-width="3"/>
+<text x="60" y="192" font-size="15" fill="#444" font-style="italic">Le S&P 500 entre officiellement en correction, l'entrée record d'Anthropic nourrit les vents contraires.</text>
+<rect x="60" y="214" width="520" height="300" fill="#fff" stroke="#e3dccd"/>
+<text x="84" y="248" font-size="13" fill="#333">Les indices européens ont cédé du terrain pour la quatrième</text>
+<text x="84" y="272" font-size="13" fill="#333">séance consécutive. Côté technologie, la levée record a servi</text>
+<text x="84" y="296" font-size="13" fill="#333">de moteur de rotation : on vend pour financer l'achat.</text>
+<text x="84" y="334" font-size="13" fill="#333">La Fed parle encore de hausse ; le dix ans américain recule</text>
+<text x="84" y="358" font-size="13" fill="#333">sous la barre des 5 % — un repli, pas un soulagement.</text>
+<text x="84" y="460" font-size="13" fill="#8c1c13" font-style="italic">La lecture suit — sept colonnes de journal à l'ancienne.</text>
+<!-- Actions en pied de page du journal -->
+<rect x="60" y="536" width="180" height="46" fill="#1a1a1a"/>
+<text x="150" y="564" text-anchor="middle" font-size="14" fill="#faf7f0">▶ Écouter</text>
+<text x="150" y="600" text-anchor="middle" font-size="11" fill="#888">une seule voix en V1</text>
+<rect x="270" y="536" width="230" height="46" fill="#fff" stroke="#1a1a1a"/>
+<text x="385" y="564" text-anchor="middle" font-size="14" fill="#1a1a1a">Questionner cet article ▸</text>
+<!-- Dialogue questionnement -->
+<rect x="540" y="286" width="280" height="220" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+<text x="560" y="316" font-size="13" fill="#1a1a1a" font-weight="bold">Voulez-vous utiliser Vibe ?</text>
+<rect x="560" y="332" width="90" height="28" fill="#1a1a1a"/><text x="605" y="351" text-anchor="middle" font-size="12" fill="#fff">Oui</text>
+<rect x="662" y="332" width="90" height="28" fill="#fff" stroke="#1a1a1a"/><text x="707" y="351" text-anchor="middle" font-size="12" fill="#1a1a1a">Non</text>
+<text x="560" y="384" font-size="12" fill="#444">Choisir une autre IA :</text>
+<rect x="560" y="396" width="140" height="26" fill="#f1ebdf"/><text x="630" y="414" text-anchor="middle" font-size="11" fill="#333">ChatGPT · Claude · …</text>
+<rect x="560" y="438" width="16" height="16" fill="#fff" stroke="#1a1a1a"/><text x="586" y="451" font-size="11" fill="#333">retenir comme application par défaut</text>
+<text x="560" y="486" font-size="10" fill="#888">pré-message : titre + ID en base, finissant par</text>
+<text x="560" y="500" font-size="10" fill="#888">« L'utilisateur veut questionner cet article »</text>
+</svg>

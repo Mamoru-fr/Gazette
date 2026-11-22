@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="620" viewBox="0 0 880 620" font-family="Georgia, 'Times New Roman', serif">
+<rect width="880" height="620" fill="#faf7f0"/>
+<text x="60" y="64" font-size="30" fill="#1a1a1a">Connexion</text>
+<text x="820" y="64" text-anchor="end" font-size="12" fill="#888">7 / 50 flux — le plafond dit le nombre, jamais une limite d'architecture</text>
+<line x1="60" y1="84" x2="820" y2="84" stroke="#1a1a1a" stroke-width="3"/>
+<text x="60" y="116" font-size="13" fill="#444">Ajouter un flux RSS par simple copier-coller.</text>
+<rect x="60" y="132" width="600" height="44" fill="#fff" stroke="#1a1a1a"/>
+<text x="80" y="160" font-size="14" fill="#999">Coller l'URL du flux RSS…</text>
+<rect x="684" y="132" width="136" height="44" fill="#1a1a1a"/>
+<text x="752" y="160" text-anchor="middle" font-size="14" fill="#faf7f0">Connecter</text>
+<!-- Liste -->
+<g font-size="14">
+  <text x="60" y="216" fill="#1a1a1a">Le Monde</text><text x="600" y="216" fill="#888">lemonde.fr/rss/une</text><text x="800" y="216" text-anchor="end" fill="#8c1c13">retirer</text>
+  <line x1="60" y1="230" x2="820" y2="230" stroke="#eee"/>
+  <text x="60" y="258" fill="#1a1a1a">AFP</text><text x="600" y="258" fill="#888">afp.com/feed</text><text x="800" y="258" text-anchor="end" fill="#8c1c13">retirer</text>
+  <line x1="60" y1="272" x2="820" y2="272" stroke="#eee"/>
+  <text x="60" y="300" fill="#1a1a1a">Reuters</text><text x="600" y="300" fill="#888">reuters.com/rss</text><text x="800" y="300" text-anchor="end" fill="#8c1c13">retirer</text>
+  <line x1="60" y1="314" x2="820" y2="314" stroke="#eee"/>
+  <text x="60" y="342" fill="#1a1a1a">Jeune Afrique</text><text x="600" y="342" fill="#888">jeuneafrique.com/rss</text><text x="800" y="342" text-anchor="end" fill="#8c1c13">retirer</text>
+  <line x1="60" y1="356" x2="820" y2="356" stroke="#eee"/>
+  <text x="60" y="384" fill="#1a1a1a">TechCrunch</text><text x="600" y="384" fill="#888">techcrunch.com/feed</text><text x="800" y="384" text-anchor="end" fill="#8c1c13">retirer</text>
+  <line x1="60" y1="398" x2="820" y2="398" stroke="#eee"/>
+  <text x="60" y="426" fill="#1a1a1a">Journal du Dimanche</text><text x="600" y="426" fill="#888">jdd.fr/rss</text><text x="800" y="426" text-anchor="end" fill="#8c1c13">retirer</text>
+  <line x1="60" y1="440" x2="820" y2="440" stroke="#eee"/>
+  <text x="60" y="468" fill="#1a1a1a" font-style="italic">La sélection du JT — les sources de départ, sans obligation des 50 (§8)</text>
+</g>
+<line x1="60" y1="530" x2="820" y2="530" stroke="#1a1a1a" stroke-width="1"/>
+<text x="440" y="558" text-anchor="middle" font-size="12" fill="#888">« Connexion », pas « audit » — le mot du client (§8, réponse 4)</text>
+</svg>
