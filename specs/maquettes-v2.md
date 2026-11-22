@@ -24,8 +24,11 @@ Sources : ReadingQuick (« Best Text and Background Colors for Reading Speed »,
 
 ## Les deux partis (variations d'une même intention — le client tranche)
 
-**A — le kiosque** : l'entrée est une une dense — un article de tête, puis les titres en colonnes serrées. Zéro décor ; le style journal vit ENTIÈREMENT dans la page article (colonne unique, lettrine, pied Écouter / Questionner).
+**A — le kiosque** (structure magazine — le client la dit « trop brute » : maintenue en variante, plus la piste principale) : l'entrée est une une dense — un article de tête, puis les titres en colonnes serrées. Zéro décor ; le style journal vit ENTIÈREMENT dans la page article (colonne unique, lettrine, pied Écouter / Questionner).
 - `kiosque-entree-desktop.html` · `kiosque-entree-mobile.html` · `kiosque-article-{desktop,mobile}.html`
+
+**C — la file douce** ( ajout 22/11 au soir, né de la recherche « envie de lire » — peau : Crème, retenue par le client) : l'entrée est une FILE qui respire — une colonne, une salutation (« Bonjour. Six textes vous attendent. »), la lecture estimée du jour, un article de tête, puis des entrées aérées (titre serif, source, durée), et une FIN assumée (« c'est tout pour aujourd'hui ; le reste dort sans honte ») plus un bouton « hier ». Pas de colonnes, pas de densité : l'air d'abord. Inspirée de la recherche : Matter et sa file épurée, Readwise Reader et ses marges/65 caractères, my-rss-reader (bocan) et son « calm reading », Instapaper et sa surface nettoyée.
+- `file-entree-desktop.html` · `file-entree-mobile.html`
 
 **B — la bibliothèque de presse** : l'entrée est LA PIÈCE des journaux — sources rangées en étagères, chacune ouvre SA gazette (sa une à lui). L'article porte un petit masthead de sa source. Une ligne rappelle que les étagères savent accueillir, à terme, des histoires installées (idée notée, rien en V1).
 - `biblio-entree-desktop.html` · `biblio-entree-mobile.html` · `biblio-article-{desktop,mobile}.html`
