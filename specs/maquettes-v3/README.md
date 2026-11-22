@@ -19,6 +19,6 @@ La V2 montrait des pages seules. La V3 est **l'application** : on y navigue comm
 
 ## Règles de la maison, respectées
 
-HTML/CSS + JS léger, **aucun SVG**, mobile et desktop **distincts**, peau **Crème**, images des flux avec tuile de secours typographique quand le flux est muet.
+HTML/CSS + JS léger, mobile et desktop **distincts**, peau **Crème**. **SVG : réservé aux icônes fines** (volume, point d'interrogation — décret du client au verdict de la gate 2 : des icônes SVG classiques, jamais des émojis) ; jamais en maquette structurelle., images des flux avec tuile de secours typographique quand le flux est muet.
 
 — Norman à l'écran, Diderot au banc et à l'organisation, 22/11/2026. Sur la branche `feature/maquettes-v3`, fusion dans main par pull request : main reste sacrée.
