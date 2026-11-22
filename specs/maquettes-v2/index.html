@@ -2,24 +2,27 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Maquettes v2 — sommaire — Gazette (maquette v2)</title>
+<title>Maquettes V2 — sommaire — Gazette</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 *{box-sizing:border-box;margin:0}
-body{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;color:#2b2620;background:#faf6ef;line-height:1.65;-webkit-font-smoothing:antialiased}
+body{font-family:Georgia,'Iowan Old Style','Times New Roman',serif;color:#2b2620;background:#faf6ef;line-height:1.65}
 a{color:#8a3b2e;text-decoration:none}
 .sheet{max-width:1040px;margin:0 auto;padding:26px 30px 60px}
-.filet{border:0;border-top:1px solid #d8cfbf;margin:34px 0}
-h1{font-weight:normal;font-size:34px;line-height:1.18;margin-bottom:10px}
-h2{font-weight:normal;font-size:19px;margin-bottom:6px}
-p{color:#5d5546;font-size:15.5px;max-width:640px}
-ul{margin:12px 0 30px;line-height:2;font-size:15px}
-.foot{font-size:12px;color:#8a8073;font-variant:small-caps;letter-spacing:.08em;margin-top:44px}
+.filet{border:0;border-top:1px solid #d8cfbf;margin:30px 0}
+h1{font-weight:normal;font-size:32px;line-height:1.18;margin-bottom:10px}
+h2{font-weight:normal;font-size:19px;margin:6px 0}
+p{color:#5d5546;font-size:15.5px;max-width:680px}
+ul{margin:12px 0 26px;line-height:2;font-size:15px}
+.generations{background:#f3ead6;border:1px solid #d8cfbf;border-radius:4px;padding:14px 18px;font-size:14px;margin-bottom:8px}
+.generations b{font-variant:small-caps;letter-spacing:.1em}
+.foot{font-size:12px;color:#8a8073;font-variant:small-caps;letter-spacing:.08em;margin-top:40px}
 </style>
 </head>
 <body><div class="sheet">
-<h1>Gazette — maquettes v2 : cinq partis, deux formats chacun.</h1>
-<p>Le client choisit le parti (ou les mélange) ; chaque page s'ouvre directement dans le navigateur — HTML/CSS + un soupçon de JS, aucun SVG en maquette, peau Crème sur la piste douce.</p>
+<div class="generations"><b>Générations</b> — V0 : SVG déclassés (<code>../maquettes/</code>) · <b>V2 : ce dossier, les essais</b> (partis, peaux) · <b>V3 : l'application maquette complète</b> → <a href="../maquettes-v3/app-desktop.html">desktop</a> · <a href="../maquettes-v3/app-mobile.html">mobile</a> · <a href="../maquettes-v3/README.md">README</a></div>
+<h1>Maquettes V2 : les essais, cinq partis, deux formats chacun.</h1>
+<p>Chaque page est un parti daté — voir le <a href="README.md">README du dossier</a> pour le fil complet. Le parti ou le mélange reste au choix du client.</p>
 <hr class="filet">
 <h2>Parti A — le kiosque</h2><ul>
 <li><a href="kiosque-entree-desktop.html">kiosque-entree-desktop.html</a> · <a href="kiosque-entree-mobile.html">mobile</a></li>
@@ -27,12 +30,12 @@ ul{margin:12px 0 30px;line-height:2;font-size:15px}
 <h2>Parti B — la bibliothèque de presse</h2><ul>
 <li><a href="biblio-entree-desktop.html">biblio-entree-desktop.html</a> · <a href="biblio-entree-mobile.html">mobile</a></li>
 <li><a href="biblio-article-desktop.html">biblio-article-desktop.html</a> · <a href="biblio-article-mobile.html">mobile</a></li></ul>
-<h2>Parti C — la file douce, illustrée (piste principale)</h2><ul>
+<h2>Parti C — la file douce, illustrée</h2><ul>
 <li><a href="file-entree-desktop.html">file-entree-desktop.html</a> · <a href="file-entree-mobile.html">mobile</a></li></ul>
 <h2>Parti D — la file des moments</h2><ul>
 <li><a href="moments-entree-desktop.html">moments-entree-desktop.html</a> · <a href="moments-entree-mobile.html">mobile</a></li></ul>
 <h2>Parti E — la une installée (+ notes de l'informateur)</h2><ul>
 <li><a href="une-installee-desktop.html">une-installee-desktop.html</a> · <a href="une-installee-mobile.html">mobile</a></li></ul>
-<h2>Laboratoire</h2><ul><li><a href="palette-lab.html">palette-lab.html</a> — quatre peaux cliquables (encre fraîche / crème / sépia / nuit)</li></ul>
-<p class="foot">Posé en séance le 22/11 — Norman à l'écran, Diderot au banc des retours (le Goût passé), Ada consultée sur les champs RSS · le verdict du client ferme l'issue #2</p>
+<h2>Laboratoire</h2><ul><li><a href="palette-lab.html">palette-lab.html</a> — quatre peaux cliquables (crème retenue)</li></ul>
+<p class="foot">Génération V2 close pour l'inspiration — la suite vit en V3 · classement par Diderot, 22/11 · le verdict du client ferme l'issue #2</p>
 </div></body></html>
