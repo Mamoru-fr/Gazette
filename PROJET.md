@@ -23,3 +23,4 @@ Source unique de vérité : ce registre. Chaque session de chantier y consigne s
 
 - 22/11/2026 — dépôt initial du registre (rangée 1e + journal) avec la spec fonctionnelle V1 ; commits spec `24c7162` / coquilles `50c8ad6` / registre présentes. — Relance 09h30, Armand coordination, Article VIII
 - 22/11/2026 — rangée 2e : verdict Gate 1 consigné, spec amendée (§8 verdict, §2 six besoins, §4 frontière apprentissage, §5 Q1–Q3 résolues, §7 témoin). — Diderot, séance directe avec le client
+- 22/11/2026 — rangée 3e : maquettes Gate 2 posées (commit 48175f2 : doc maquettes + 3 SVG), issue #2 reste ouverte — le verdict du client la ferme. — Relance 12h15, Armand coordination, Norman maquettes, Article VIII
