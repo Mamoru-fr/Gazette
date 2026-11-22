@@ -78,6 +78,12 @@ button{font-family:inherit;cursor:pointer}
 .puce.nouvelle{background:var(--accent)}
 .compteur-ligne{font-size:12px;color:var(--soft);font-variant:small-caps;letter-spacing:.08em;margin-top:18px}
 /* dialogue questionner */
+.coins{position:fixed;left:0;right:0;bottom:0;display:none;justify-content:space-between;align-items:flex-end;padding:0 26px 24px;pointer-events:none;z-index:40}
+.coin{pointer-events:auto;display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:40px;border:1.5px solid var(--accent);background:var(--paper);color:var(--accent);font-size:13px;letter-spacing:.08em;font-variant:small-caps;box-shadow:0 8px 24px rgba(55,49,42,.14);transition:padding .25s ease,border-radius .25s ease,background .15s ease,color .15s ease}
+.coin:hover{background:var(--accent);color:var(--paper)}
+.coin-ico{font-size:16px;line-height:1}
+.coins.compact .coin{padding:14px;border-radius:50%}
+.coins.compact .coin-txt{display:none}
 .voile{position:fixed;inset:0;background:rgba(55,49,42,.35);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
 .defile{background:var(--paper);border-radius:6px;max-width:520px;width:100%;padding:28px 30px;box-shadow:0 18px 50px rgba(55,49,42,.25)}
 .defile h3{font-weight:normal;font-size:21px;margin-bottom:6px}
@@ -110,7 +116,9 @@ button{font-family:inherit;cursor:pointer}
 .art h1{font-size:24px}
 .hero img{height:170px}
 .art-extrait,.corps p{font-size:15.5px}
-.lettre{padding:22px 20px;margin-top:18px}</style>
+.lettre{padding:22px 20px;margin-top:18px}
+.coins{padding:0 14px calc(64px + 12px)}
+.coin{padding:12px 16px;font-size:12px}</style>
 </head>
 <body>
 <header class="appbar"><span class="marque">La <b>Gazette</b></span><span class="date">dimanche 22 novembre</span></header>
@@ -144,13 +152,9 @@ button{font-family:inherit;cursor:pointer}
 <figure class="hero" id="art-hero"><img id="art-img" alt="Illustration de l'article"></figure>
 <p class="art-extrait" id="art-extrait"></p>
 <div class="corps" id="art-corps"></div>
-<div class="actions">
-<button class="action" data-ecouter>Écouter — voix unique</button>
-<button class="action" data-questionner>Questionner l'article</button>
-</div>
 <div class="joueur" id="joueur"><div class="barre"><i></i></div></div>
 </article>
-<p class="foot">Maquette V3 — l'interface de lecture n'apparaît qu'ici : le lieu stocke, l'article s'ouvre.</p>
+<p class="foot">Maquette V3 — l'interface de lecture n'apparaît qu'ici : Écouter en bas à gauche, Questionner en bas à droite — sticky, ils se replient quand vous lisez.</p>
 </div></section><section data-vue="informateur"><div class="wrap">
 <header class="greeting"><h1>L'Informateur</h1><p>Le briefing du Manoir, dit comme il se lit.</p></header>
 <div class="lettre">
@@ -186,6 +190,10 @@ button{font-family:inherit;cursor:pointer}
 <p class="foot">Maquette V3 — la page Connexion au mot du client : ajout d'un flux par copier-coller.</p>
 </div></section>
 </main>
+<div class="coins" id="coins">
+<button class="coin gauche" data-ecouter><span class="coin-ico">🔊</span><span class="coin-txt">Écouter</span></button>
+<button class="coin droite" data-questionner><span class="coin-ico">?</span><span class="coin-txt">Questionner</span></button>
+</div>
 <nav class="tabbar">
 <button class="tab on" data-nav="accueil">Aujourd'hui</button>
 <button class="tab" data-nav="informateur">Informateur</button>
@@ -278,6 +286,7 @@ function montrer(vue){
   document.querySelectorAll('[data-nav]').forEach(function(b){ b.classList.toggle('on', b.dataset.nav===vue); });
   document.querySelector('.scene').scrollTop = 0;
   window.scrollTo(0,0);
+  document.getElementById('coins').style.display = (vue==='article') ? 'flex' : 'none';
 }
 document.addEventListener('click', function(ev){
   var nav = ev.target.closest('[data-nav]');
@@ -330,6 +339,7 @@ document.addEventListener('submit', function(ev){
   i.value = '';
   var c = document.getElementById('compteur'); c.textContent = (parseInt(c.textContent,10)+1) + ' / 50';
 });
+window.addEventListener('scroll', function(){ document.getElementById('coins').classList.toggle('compact', window.scrollY > 60); });
 montrer('accueil');</script>
 </body>
 </html>
