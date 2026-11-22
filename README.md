@@ -60,6 +60,13 @@ Conventions de nommage en tête de commit : `docs:`, `feat:`, `fix:`, `gate:` (c
 ## 🧭 Où on en est (mis à jour à chaque tranche)
 
 - ✅ Gate 1 : spec fonctionnelle validée par le client (22/11/2026).
+- 🔄 Gate 2 : **remaquettage v2 posé** — huit pages HTML/CSS (aucun SVG), deux partis au choix du client : **le kiosque** et **la bibliothèque de presse**, en entrée et en article, mobile ET desktop (sommaire : `specs/maquettes-v2/index.html`) — verdict client attendu sur l'[issue #2](issues/2).- **`specs/`** — la spec fonctionnelle V1 (avec les mots du client), les maquettes v2 HTML/CSS (`maquettes-v2/` : kiosque et bibliothèque de presse, mobile et desktop) et les premières maquettes SVG (archives, déclassées).
+- **Les issues** — le lieu des conversations : chaque gate, chaque tranche a son issue décrite, commentée et vivante ; sous-tâches attachées pour découper les gates ; les commentaires y font office de débat d'équipe. Tout ce qui se décide s'y lit.
+- **README (ce document)** — la porte d'entrée, tenue à jour.
+
+## 🧭 Où on en est (mis à jour à chaque tranche)
+
+- ✅ Gate 1 : spec fonctionnelle validée par le client (22/11/2026).
 - 🔄 Gate 2 : maquettes posées (trois vues : la Une, l'article, Connexion) — verdict client attendu sur l'issue #2.
 - 📅 Gate 3 : proposition de stack (dont la question de la base de données, externe si retenue) après le verdict maquette.
 

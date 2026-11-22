@@ -36,3 +36,4 @@ Source unique de vérité : ce registre. Chaque session de chantier y consigne s
 - 22/11/2026 — rangée 3e : maquettes Gate 2 posées (commit 48175f2 : doc maquettes + 3 SVG), issue #2 reste ouverte — le verdict du client la ferme. — Relance 12h15, Armand coordination, Norman maquettes, Article VIII
 - 22/11/2026 — rangée 4e : directives méthode du client consignées, README réécrit en vitrine complète. — Diderot, séance directe avec le client
 - 22/11/2026 — rangée 5e : retour utilisateur du client sur les maquettes SVG — remaquettage décidé (HTML/CSS, mobile+desktop, lieu→article). — Norman, séance directe
+- 22/11/2026 — rangée 6e : maquettes v2 posées le jour même (8 pages HTML/CSS + sommaire + doc), deux partis au choix du client. — Norman à l'écran, Diderot au banc des retours
