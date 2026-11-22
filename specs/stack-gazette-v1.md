@@ -16,20 +16,51 @@ Doc seule, **zéro code** : aucun code applicatif ne sera écrit avant le verdic
 10. **PRÉROGATIVE SÉCURITÉ DU CLIENT (retour du 22/11 sur la présente proposition, consignée telle quelle)** : « tout doit être sécurisé au point qu'il n'y ait quasiment aucune faille de sécurité, aucune faille exploitable par rapport à ce qui est connu. » C'est la seule limite posée ; elle est traitée comme une contrainte à part entière (voir §2 bis).
 11. **Le client créera lui-même la base de données et donnera les clés sur demande** (retour du 22/11 : « je vous donnerai les clés, il faudra juste me le demander ») — voir §4.
 
-## §1 — Variation A (RECOMMANDÉE) : PWA Next.js + route API + Postgres externe
+## §1 — Le ring : cinq stacks sérieuses, avantages et inconvénients (retour client du 22/11 : « proposer différentes stacks, voir les avantages et les inconvénients, puis faire une zone consensus, au risque que le fichier soit plus long » — servi)
 
-- **Framework : Next.js (App Router, TypeScript)**, PWA via manifest + service worker. Justification pédagogique : même musculature que les chantiers maison (Garde-Manger en Next, Méridien/Plumier en TS de modèle pur) — chaque ligne de Gazette muscle aussi la soutenance ; la famille tient déjà ce levier.
-- **Parsing RSS : fast-xml-parser (MIT) dans une route API** — ingestion des champs réels (titre, lien, auteur, date, enclosure / media:content), tuile typographique lorsque le flux est muet ; job d'ingestion périodique côté plate (à brancher au moment du code, jamais enjambé).
-- **DB : Postgres externe gratuit (Neon ou Supabase), ORM Drizzle (MIT)**, migrations versionnées dans le repo. Le plafond 50 flux vit dans UNE constante de l'application, jamais dans le schéma.
-- **Voix : Web Speech API (speechSynthesis du navigateur)** — voir §5.
-- **Questionner : pré-message + app par défaut** — voir §6.
-- **Coûts assumés de A** : un déploiement serveur (offre gratuite), et la DB vit hors du navigateur — c'est justement ce que le client demande (« appelable n'importe quand »).
+Toutes les cinq remplissent les conditions minimales (PWA installable, routes serveur pour le parsing RSS hors CORS, TypeScript, hébergement gratuit, DB externe connectable). Ce qui les départage est propre à GAZETTE : le lecteur vocal, le contenu NON FIABLE des flux, et le régime maison (le code muscle aussi la soutenance RNCP).
 
-## §2 — Les variations présentées avec leurs compromis (jamais un choix unique)
+### 1. Next.js 15 (React, App Router) — note maison : 19/20
+**Avantages** : écosystème n°1 (tutos, bibliothèques, réponse à tout problème) ; route handlers + middleware = parsing RSS propre et **en-têtes de sécurité centralisés** ; Vercel gratuit natif avec cron gratuit pour l'ingestion périodique ; PWA outillée ; **musculature maison déjà là** (Garde-Manger en Next, TS modèle pur : chaque ligne muscle la soutenance).
+**Inconvénients** : la plus grosse surface d'abstractions (RSC, cache, bundler) = plus à surveiller aux montées de version ; dépendances nombreuses, donc périmètre à auditer plus large ; réglages de sécurité à poser explicitement (rien n'est strict par défaut).
 
-- **A (recommandée)** — gains : CORS réglé, ID stable pour le pré-message, historique consultable, les articles de l'informateur ont un lieu. Coûts : un compte d'hébergement (gratuit) à créer par le maître.
-- **B : PWA 100 % statique (Astro ou SvelteKit static) + IndexedDB + proxy RSS public** — gains : hébergement trivial, zéro backend. Rejette : pas d'ID durable (le pré-message exige « titre + ID en base », spéc §1 réponse 4), CORS à la merci d'un tiers, pas d'historique, les articles du manoir n'ont nulle part où vivre, et le conseil « DB externe » du client devient inapplicable. **Écartée sur ces raisons ; gardée comme plan de repli** si le verdict tombe « pas de DB ».
-- **C : Tauri (natif maison)** — écartée : le client veut une PWA web accessible partout, pas un binaire ; le terrain natif vit côté Suite Manoir.
+### 2. React Router 7 (ex-Remix, React) — note maison : 17/20
+**Avantages** : la voie de la sobriété web (standards, formulaires/actions, peu de magie) ; CSP stricte facile à tenir ; même tribu React que la maison ; adapters sur la plupart des plateformes gratuites.
+**Inconvénients** : renommé/restructuré récemment (Remix → RR7), documentation en transition ; outillage PWA/offline plus artisanal ; cron à fabriquer côté hébergeur ; moins de main courante que Next.
+
+### 3. SvelteKit (Svelte) — note maison : 16/20 — le dauphin honnête
+**Avantages** : bundle minimal = **moins de code exécuté = moins de surface d'attaque** ; syntaxe simple, performances superbes ; adapters gratuits (Vercel/Netlify/Node) ; ambiance « calm » qui sied à Gazette.
+**Inconvénients** : la famille n'a pas ce muscle (courbe entière à payer, y compris pour la soutenance) ; écosystème plus petit pour PWA/lecteur vocal ; moins de matériel de révision sur les incidents sécurité.
+
+### 4. Nuxt 4 (Vue) — note maison : 16/20
+**Avantages** : Vue mature et documentée ; Nitro (server routes) très propre ; hébergement gratuit large ; cron outillé.
+**Inconvénients** : aucun muscle maison Vue ; écosystème de modules à auditer un par un (prérogative sécurité : le point noir) ; montée Nuxt 3 → 4 récente (peu de recul).
+
+### 5. Astro 5 (+ islands) — note maison : 15/20
+**Avantages** : pensé CONTENU d'abord (l'esprit de Gazette) ; envoie presque rien au navigateur (sécurité et vitesse) ; images first-class ; hébergement statique trivial.
+**Inconvénients** : orienté sites statiques : une app à état (lecteur, progression, flux dynamiques) va à contre-courant ; API routes limitées, pas de cron natif ; PWA offline à écrire à la main — le plus de travail serveur des cinq.
+
+## §2 — Zone de consensus
+
+**Ce sur quoi les cinq s'accordent** : PWA possible, parsing serveur possible, DB externe possible, zéro coût, TypeScript. Aucune n'est exclue techniquement : le choix est un ARBITRAGE, pas une vérité.
+
+**Ce qui départage, par ordre de poids pour ce projet** :
+1. **La prérogative sécurité (contrainte n°10)** : moins de code et de dépendances = SvelteKit et React Router gagnent en surface d'attaque ; mais l'OUTILLAGE de sécurité mature (middleware central pour CSP/HSTS, vulnérabilités vite patchées, Dependabot bien supporté) favorise Next.js et Nuxt. Bilan : à périmètre de fonctionnalité égale, l'écart se joue sur la DISCIPLINE plus que sur le framework — la §2 bis s'applique aux cinq.
+2. **Le cron d'ingestion gratuit** : Next.js (Vercel cron) et Nuxt (Nitro) l'ont natif ; les autres le fabriquent.
+3. **La musculature maison et la soutenance** : React, et du Next déjà pratiqué (Garde-Manger) — Next.js et React Router seulement.
+4. **L'écosystème de secours** (lecteur vocal, PWA offline, incidents) : Next.js largement en tête.
+
+**CONSENSUS DE LA MAISON** : **Next.js reste la recommandation** (muscle + outillage sécurité + cron natif + écosystème), **SvelteKit est le dauphin honnête** si le client préfère la légèreté minimale, **React Router 7** la voie moyenne web-standards. Le client tranche ; son verdict porte TOUTE la famille technique d'un coup. La variation A décrite avant enrichissement (Next.js + fast-xml-parser en route API + Postgres externe + Drizzle + speechSynthesis) reste la déclinaison opérationnelle du choix Next.js.
+
+## §2 bis — La prérogative sécurité, servie en engagements vérifiables (Hopper au banc)
+
+Le contenu RSS est un INTRANT NON FIABLE (texte tiers). Engagements, vérifiables au banc avant chaque fusion :
+1. **Dépendances** : épinglage par SHA (déjà standard maison), audit continu (npm audit + Dependabot), zéro dépendance peu maintenue ; toute CVE connue sur une dépendance = blocage de fusion.
+2. **En-têtes et transport** : HTTPS uniquement ; CSP stricte (aucun script inline, sources listées), HSTS, X-Content-Type-Options, Referrer-Policy, COOP/CORP — posés AU FRAMEWORK dès la première tranche de code.
+3. **Contenu tiers** : le titre, l'extrait et l'image d'un flux ne sont JAMAIS rendus en HTML brut — assainissement serveur à l'ingestion, jamais d'eval ni d'innerHTML direct ; URLs des images et liens validées (pas de SSRF ni d'open redirect : le serveur ne fetch QUE les flux déclarés par le client).
+4. **Secrets** : URL de connexion et clés jamais au repo, variables d'hébergement uniquement (transmission par canal privé — le client donne les clés sur demande).
+5. **Entrées** : validation stricte de tout ce qui entre (URL de flux, paramètres de routes) ; rate limiting des routes API.
+6. **Contrôle** : Hopper tient une grille OWASP Top 10 sur Gazette et UNE GATE SÉCURITÉ obligatoire par fusion ; audit mensuel des dépendances consigné au registre.
 
 ## §3 — Schéma de données minimal (une seule vérité, rien de plus qu'exige la V1)
 
