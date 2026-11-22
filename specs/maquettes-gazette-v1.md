@@ -13,7 +13,7 @@ Le client veut une interface « au style journal, à la manière des articles de
 ## §1 — Les trois vues
 
 ### Vue 1 — La Une (`specs/maquettes/gazette-vue-une.svg`)
-Masthead « GAZETTE » en belle serif, filet double, ligne de date + compteur honnête des flux (ex. « 7 flux connectés — plafond V1 : 50, jamais une limite d'architecture »). Navigation : Une · Informateur · Connexion. Article de tête + trois colonnes del'article suivants, chacun : titre serif, source, heure. Badge discret « informateur » sur l'édito du majordome qui ouvre la page Informateur.
+Masthead « GAZETTE » en belle serif, filet double, ligne de date + compteur honnête des flux (ex. « 7 flux connectés — plafond V1 : 50, jamais une limite d'architecture »). Navigation : Une · Informateur · Connexion. Un article de tête, puis trois colonnes d'articles suivants, chacun : titre serif, source, heure. Badge discret « informateur » sur l'édito du majordome qui ouvre la page Informateur.
 
 ### Vue 2 — L'article (`specs/maquettes/gazette-vue-article.svg`)
 Retour « ‹ Une ». Titre, chapeau, signature « Source · dimanche 22 novembre · ID en base : gzt-481 ». Corps sur colonne unique de journal. En pied, la barre du journal : **Écouter** (une seule voix en V1, §1 réponse 2 — pas de sélecteur) et **Questionner cet article** qui ouvre le dialogue décrété : « Voulez-vous utiliser Vibe ? Oui / Non — Choisir une autre IA (ChatGPT, Claude…) — retenir comme application par défaut » (§1 réponses 4 et 5 : pré-message portant titre + ID, finissant par « L'utilisateur veut questionner cet article », l'utilisateur complète ensuite).
@@ -38,6 +38,6 @@ La page des flux, nommée « Connexion » par le client (§8, réponse 4 — pas
 
 ## §4 — Témoin
 
-① verdict du client sur les maquettes (issue #2) ;② derrière : proposition de stack Ada (gate 3) avec la recommandation DB (Q2 : externe si oui, le client crée la base et donne l'ID) et la justification pédagogique + alternative écartée ;③ Hopper : critères d'acceptation en parallèle des maquettes ;④ zéro code avant le verdict — jamais enjambé.
+① verdict du client sur les maquettes (issue #2) ; ② derrière : proposition de stack Ada (gate 3) avec la recommandation DB (Q2 : externe si oui, le client crée la base et donne l'ID) et la justification pédagogique + alternative écartée ;③ Hopper : critères d'acceptation en parallèle des maquettes ;④ zéro code avant le verdict — jamais enjambé.
 
 — Norman (maquettes), Armand coordination, Relance 12h15 du 22/11/2026. Doc seule, aucun gate enjambé.
