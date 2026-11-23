@@ -1,0 +1,6 @@
+/* Gazette — feuille nue de la tranche fondations.
+   Le style journal de la maquette V3 (vérité d'interface) arrive avec ses tranches. */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: Georgia, "Times New Roman", serif; line-height: 1.5; }
+main { max-width: 42rem; margin: 0 auto; padding: 1.5rem; }
