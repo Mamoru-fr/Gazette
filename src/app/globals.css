@@ -1,6 +1,83 @@
-/* Gazette — feuille nue de la tranche fondations.
-   Le style journal de la maquette V3 (vérité d'interface) arrive avec ses tranches. */
+/* Gazette — peau « Crème » de la maquette V3 (gate 2 validée : chartre
+   sourcée — fond blanc cassé chaud, encre gris très foncé, contraste
+   modéré, un accent vif unique ; jamais pur/pur). Tranche UI 2, rangée 20e. */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body { font-family: Georgia, "Times New Roman", serif; line-height: 1.5; }
-main { max-width: 42rem; margin: 0 auto; padding: 1.5rem; }
+:root {
+  --bg: #f8f3e7;
+  --ink: #37312a;
+  --soft: #8a8172;
+  --line: #e9dfc9;
+  --accent: #b4551e;
+  --paper: #fdfbf5;
+}
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.7;
+}
+main { max-width: 42rem; margin: 0 auto; }
+.wrap { padding: 0 26px 90px; }
+.greeting { padding: 34px 0 6px; }
+.greeting h1 { font-weight: normal; font-size: 25px; }
+.greeting p { font-size: 14px; color: var(--soft); margin-top: 4px; }
+.filet { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
+.entree { display: flex; gap: 18px; padding: 24px 4px; border-bottom: 1px solid var(--line); }
+.entree h2 { font-weight: normal; font-size: 21px; line-height: 1.3; margin: 0; }
+.entree h2:hover { color: var(--accent); }
+.entree p { font-size: 15px; color: var(--soft); margin-top: 8px; }
+.entree .meta {
+  font-size: 12px;
+  color: var(--soft);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+}
+.entree.grande h2 { font-size: 26px; }
+.entree-corps { flex: 1; min-width: 0; }
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-variant: small-caps;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.visuel { flex: 0 0 92px; width: 92px; height: 92px; border-radius: 4px; overflow: hidden; background: var(--line); }
+.grande .visuel { flex-basis: 168px; width: 168px; height: 120px; }
+.visuel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Tuile de secours typographique : la marque du flux, jamais une image
+   de remplacement, jamais d'émoi (décret icônes du client). */
+.visuel.nophoto-tuile {
+  background: linear-gradient(150deg, #e9dfc9, #d9cbae);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.visuel.nophoto-tuile span {
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  color: var(--soft);
+  text-align: center;
+  padding: 4px;
+}
+.note b, .note strong { font-variant: small-caps; font-weight: normal; margin-right: 4px; }
+.pause { text-align: center; color: var(--soft); font-style: italic; padding: 22px 0; font-size: 14px; }
+/* Hier : plié en HTML pur (<details>) — zéro script pour un pli. */
+details.plus { padding: 8px 0 24px; }
+details.plus summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  padding: 10px 4px;
+}
+.compteur-ligne {
+  font-size: 13px;
+  color: var(--soft);
+  text-align: center;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}

@@ -1,16 +1,21 @@
 /**
- * Tranche fondations : la page porte la vérité d'état du chantier, pas un simulacre
- * d'interface. Les vues de la maquette V3 (sidebar desktop / bottom bar mobile)
- * arrivent tranche par tranche, dans la voix de Norman — jamais de bouton décoratif.
+ * Gazette — la vue Une, tranche UI 2 (rangée 20e).
+ * Le modèle pur est la vérité ; la page ne rend JAMAIS un simulacre :
+ * aucun flux n'est encore ingéré (base vierge), la file est donc VIDE
+ * et dite telle quelle. Le branchement data (route API parsing RSS)
+ * est la tranche suivante — jamais enjambée.
  */
-export default function Page() {
+import VueUne from "../components/une";
+import { composerUne } from "../lib/une";
+
+export const dynamic = "force-dynamic";
+
+export default async function Page() {
+  // Rendue à la requête : l'accroche porte le jour réel, jamais le jour du build.
+  const une = composerUne([], { maintenant: new Date(), fluxConnectes: 0 });
   return (
     <main>
-      <h1>Gazette</h1>
-      <p>
-        Fondations posées : scaffold Next.js, en-têtes de sécurité, schéma de données,
-        modèle pur du pré-message, CI. La Une arrive par tranches.
-      </p>
+      <VueUne une={une} />
     </main>
   );
 }
