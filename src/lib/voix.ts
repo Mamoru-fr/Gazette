@@ -82,7 +82,7 @@ export function choisirVoix(
   if (exacte) return exacte;
   const base = languePreferee.split("-")[0];
   const prefixee = propres.find(
-    (x) => x.langue.split("_")[0].split("-")[0] === base,
+    (x) => (x.langue.split("_")[0] ?? "").split("-")[0] === base,
   );
   return prefixee ?? null;
 }
