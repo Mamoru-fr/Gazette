@@ -20,7 +20,9 @@ const MAINTENANT = new Date("2026-11-23T12:15:00");
 const HIER_SOIR = new Date("2026-11-22T19:02:00");
 const CE_MATIN = new Date("2026-11-23T09:30:00");
 
-const art = (a: Partial<ArticleUne> & Pick<ArticleUne, "id" | "titre">): ArticleUne => ({
+const art = (a: Partial<ArticleUne>): ArticleUne => ({
+  id: "id-banc",
+  titre: "titre du banc",
   extrait: "extrait de quatre mots",
   marque: "Le Monde",
   imageUrl: null,
@@ -45,7 +47,7 @@ describe("composerUne — la file", () => {
     );
     expect(une.entrees.map((e) => e.id)).toEqual(["b"]);
     expect(une.hier.map((e) => e.id)).toEqual(["a"]);
-    expect(une.hier[0].quand).toBe("hier");
+    expect(une.hier[0]!.quand).toBe("hier");
   });
 
   it("le mur de la journée est calendaire : minuit cinq d'aujourd'hui reste dedans", () => {
@@ -64,7 +66,7 @@ describe("composerUne — la file", () => {
       { maintenant: MAINTENANT, fluxConnectes: 0 },
     );
     expect(une.entrees.map((e) => e.id)).toEqual(["b", "a"]);
-    expect(une.entrees[1].quand).toBe("à l'instant");
+    expect(une.entrees[1]!.quand).toBe("à l'instant");
   });
 
   it("la première d'aujourd'hui, SEULE, est grande et porte le kicker", () => {
@@ -72,10 +74,10 @@ describe("composerUne — la file", () => {
       [art({ id: "a" }), art({ id: "b", titre: "deuxième" })],
       { maintenant: MAINTENANT, fluxConnectes: 3 },
     );
-    expect(une.entrees[0].grande).toBe(true);
-    expect(une.entrees[0].kicker).toBe("À la une, aujourd'hui");
-    expect(une.entrees[1].grande).toBe(false);
-    expect(une.entrees[1].kicker).toBeNull();
+    expect(une.entrees[0]!.grande).toBe(true);
+    expect(une.entrees[0]!.kicker).toBe("À la une, aujourd'hui");
+    expect(une.entrees[1]!.grande).toBe(false);
+    expect(une.entrees[1]!.kicker).toBeNull();
   });
 
   it("tuile de secours typographique : marque rendue, jamais d'image de remplacement", () => {
@@ -83,8 +85,8 @@ describe("composerUne — la file", () => {
       maintenant: MAINTENANT,
       fluxConnectes: 1,
     });
-    expect(une.entrees[0].imageUrl).toBeNull();
-    expect(une.entrees[0].marque).toBe("CNRS Le Journal");
+    expect(une.entrees[0]!.imageUrl).toBeNull();
+    expect(une.entrees[0]!.marque).toBe("CNRS Le Journal");
   });
 
   it("marque absente -> « source inconnue », dit tel quel", () => {
@@ -92,7 +94,7 @@ describe("composerUne — la file", () => {
       maintenant: MAINTENANT,
       fluxConnectes: 1,
     });
-    expect(une.entrees[0].marque).toBe("source inconnue");
+    expect(une.entrees[0]!.marque).toBe("source inconnue");
   });
 
   it("note de l'informateur conservée, absence -> null", () => {
@@ -100,8 +102,8 @@ describe("composerUne — la file", () => {
       [art({ id: "a", noteInformateur: "retenu pour sa méthode." }), art({ id: "b", titre: "sans note" })],
       { maintenant: MAINTENANT, fluxConnectes: 2 },
     );
-    expect(une.entrees[0].note).toBe("retenu pour sa méthode.");
-    expect(une.entrees[1].note).toBeNull();
+    expect(une.entrees[0]!.note).toBe("retenu pour sa méthode.");
+    expect(une.entrees[1]!.note).toBeNull();
   });
 });
 
