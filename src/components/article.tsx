@@ -1,4 +1,5 @@
 import type { ArticleModel } from "../lib/article";
+import VueEcouter from "./ecouter";
 
 /**
  * Gazette — la vue article (tranche UI 3, rangée 22e).
@@ -49,6 +50,7 @@ function VueArticle({ article }: { article: ArticleModel }) {
           {article.lectureEstimee === 1 ? "minute" : "minutes"}
         </p>
       </article>
+      <VueEcouter article={article} />
     </div>
   );
 }

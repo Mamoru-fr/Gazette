@@ -86,3 +86,31 @@ details.plus summary {
 .wrap.article .retour { display: inline-block; margin-bottom: 1.25rem; color: #8a8172; text-decoration: none; font-size: 0.9rem; }
 .article-image { display: block; width: 100%; max-width: 480px; margin: 0 auto 1.5rem; border: 1px solid #e9dfc9; border-radius: 4px; }
 .wrap.article p { line-height: 1.7; }
+/* — Tranche rangée 23e : le coin sticky Écouter — branché réel à la
+   voix speechSynthesis, jamais décoratif ; l'API absente ⇒ le coin ne
+   se pose pas (le composant le décide, le CSS habille ce qui existe). */
+.coin {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(55, 49, 42, 0.12);
+}
+.coin:hover { border-color: var(--accent); color: var(--accent); }
+.coin[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.coin svg { display: block; }
+/* Le repli d'étiquette au défilement viendra avec le second coin
+   (Questionner) — une seule passe de JS, jamais deux parchemins. */
+@media (max-width: 640px) {
+  .coin { left: 12px; bottom: 12px; padding: 8px 14px; }
+}
