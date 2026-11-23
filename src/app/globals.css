@@ -81,3 +81,8 @@ details.plus summary {
   padding-top: 26px;
   border-top: 1px solid var(--line);
 }
+/* — Tranche UI 3 : la vue article (rangée 22e) — une colonne, du texte. */
+.wrap.article { max-width: 42rem; }
+.wrap.article .retour { display: inline-block; margin-bottom: 1.25rem; color: #8a8172; text-decoration: none; font-size: 0.9rem; }
+.article-image { display: block; width: 100%; max-width: 480px; margin: 0 auto 1.5rem; border: 1px solid #e9dfc9; border-radius: 4px; }
+.wrap.article p { line-height: 1.7; }
