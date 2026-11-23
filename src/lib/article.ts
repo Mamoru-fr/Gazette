@@ -35,7 +35,7 @@ export interface ArticleModel {
   corpsComplet: false;
 }
 
-/** Longueur d'asctime visée par paragraphe — assez pour respirer, jamais une brique. */
+/** Longueur visée par paragraphe — assez pour respirer, jamais une brique. */
 export const CIBLE_PARAGRAPHE = 280;
 
 /** guid d'abord ; à défaut le lien VALIDÉ ; sinon pas d'identité (null). */
