@@ -27,7 +27,7 @@ export function assainirNonce(nonce: string): string {
 
 export interface OptionsCsp {
   /**
-   * Next.js en dev exige 'unsafe-eval' (HMR).Jamais en production :
+   * Next.js en dev exige 'unsafe-eval' (HMR). Jamais en production :
    * l'option ne peut être vraie que si l'appelant prouve NODE_ENV=development
    * (ce contrôle vit au middleware, jamais au modèle).
    */
