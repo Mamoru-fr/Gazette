@@ -7,8 +7,8 @@
  * route API + base derrière les secrets du maître), la page lira les
  * flux réels et l'écriture vivra.
  */
-import VueConnexion from "../../../components/connexion";
-import { composerConnexion } from "../../../lib/connexion";
+import VueConnexion from "../../components/connexion";
+import { composerConnexion } from "../../lib/connexion";
 
 export const dynamic = "force-dynamic";
 

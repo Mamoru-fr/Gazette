@@ -24,7 +24,9 @@ export default function VueConnexion({ model }: { model: ConnexionModel }) {
     setVerdict(jugerConnexion(saisie, []));
   };
 
-  const classeVerdict = verdict ? `verdict-connexion ${verdict.etat}` : null;
+  const classeVerdict: string | undefined = verdict
+    ? `verdict-connexion ${verdict.etat}`
+    : undefined;
 
   return (
     <div className="wrap">
