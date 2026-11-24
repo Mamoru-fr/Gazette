@@ -346,3 +346,44 @@ html.coins-replie .coin span { display: none; }
   color: var(--soft);
   font-size: 13px;
 }
+/* ===== Rangée 28e — la navigation V3 : le même rail, deux médias ===== */
+/* Une seule table (VUES_NAV), un seul composant : le média décide —
+   barre de vues sous le masthead en desktop, barre basse fixe en
+   mobile. La marque vit dans le HTML (aria-current), le CSS habille. */
+.nav-rail {
+  display: flex;
+  gap: 1.2rem;
+  padding: 0.8rem 1.2rem 0.6rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.nav-lien {
+  text-decoration: none;
+  color: var(--soft);
+  font-size: 0.95rem;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+}
+.nav-lien.actif {
+  color: var(--accent);
+  font-weight: 600;
+}
+.nav-muette {
+  color: var(--soft);
+  opacity: 0.5;
+}
+@media (max-width: 640px) {
+  .nav-rail {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    gap: 0;
+    justify-content: space-evenly;
+    padding: 0.7rem 0.5rem calc(0.7rem + env(safe-area-inset-bottom)) 0.5rem;
+    border-top: 1px solid var(--line);
+    border-bottom: none;
+    z-index: 5;
+  }
+  main { padding-bottom: 4rem; }
+}

@@ -5,14 +5,13 @@
  * et dite telle quelle. Le branchement data (route API parsing RSS)
  * est la tranche suivante — jamais enjambée.
  *
- * Rangée 26e : le compteur honnête porte désormais le lien réel vers
- * la page Connexion (« Vos flux ») — la navigation nav de la maquette
- * V3 est une tranche future ; ce lien seul dit vrai.
- *
- * Rangée 27e : le lien de l'Informateur (le briefing du jour, en lettre)
- * rejoint la ligne compteur — deux liens qui disent vrai, toujours pas
- * de nav simulée.
+ * Rangée 26e : le compteur honnête porte le lien réel vers la page
+ * Connexion (« Vos flux »). Rangée 27e : le lien Informateur le
+ * rejoint. Rangée 28e : la nav V3 complète est posée — cette page
+ * déclare sa vue « aujourdhui », le rail marque la vérité ; la ligne
+ * compteur reste : deux chemins vers les mêmes pages, pas une dette.
  */
+import VueNav from "../components/nav";
 import VueUne from "../components/une";
 import { composerUne } from "../lib/une";
 
@@ -23,6 +22,7 @@ export default async function Page() {
   const une = composerUne([], { maintenant: new Date(), fluxConnectes: 0 });
   return (
     <main>
+      <VueNav courante="aujourdhui" />
       <VueUne une={une} />
       <p className="compteur-ligne">
         vos flux se gèrent sur la page{" "}
