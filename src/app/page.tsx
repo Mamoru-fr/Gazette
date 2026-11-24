@@ -8,6 +8,10 @@
  * Rangée 26e : le compteur honnête porte désormais le lien réel vers
  * la page Connexion (« Vos flux ») — la navigation nav de la maquette
  * V3 est une tranche future ; ce lien seul dit vrai.
+ *
+ * Rangée 27e : le lien de l'Informateur (le briefing du jour, en lettre)
+ * rejoint la ligne compteur — deux liens qui disent vrai, toujours pas
+ * de nav simulée.
  */
 import VueUne from "../components/une";
 import { composerUne } from "../lib/une";
@@ -24,6 +28,10 @@ export default async function Page() {
         vos flux se gèrent sur la page{" "}
         <a className="vers-flux" href="/connexion">
           Connexion
+        </a>
+        {" "}· le briefing du jour, en lettre, sur la page{" "}
+        <a className="vers-flux" href="/informateur">
+          Informateur
         </a>
       </p>
     </main>

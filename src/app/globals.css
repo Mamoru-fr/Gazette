@@ -267,3 +267,82 @@ html.coins-replie .coin span { display: none; }
   text-decoration: none;
 }
 .vers-flux:hover { text-decoration: underline; }
+
+/* ===== Rangée 27e — la section Informateur : le briefing du jour, en lettre ===== */
+/* Peau Crème, mêmes jetons — la lettre respire : un peu plus d'air
+   qu'une entrée de file, jamais un contenant mangeur du contenu. */
+.wrap.lettre .masthead-informateur {
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.16em;
+  font-size: 28px;
+  margin: 0;
+  padding-top: 34px;
+}
+.wrap.lettre .date-lettre {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--soft);
+  margin: 4px 0 0;
+}
+.accroche-lettre {
+  font-size: 15px;
+  color: var(--ink);
+  margin: 0 0 18px;
+}
+/* La lettre : un bloc habité du papier, titre en grand corps de texte. */
+.briefing {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 26px 26px 18px;
+}
+.briefing h2 {
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 1.35;
+  margin: 0 0 14px;
+}
+.briefing p { line-height: 1.7; margin: 0 0 12px; }
+.quand-lettre {
+  font-size: 12.5px;
+  color: var(--soft);
+  margin-top: 16px;
+}
+.signature {
+  font-style: italic;
+  color: var(--soft);
+  text-align: right;
+  margin: 14px 0 0;
+}
+/* L'absence honnête : jamais un simulacre de lettre. */
+.lettre-absente {
+  font-style: italic;
+  color: var(--soft);
+  font-size: 15px;
+  padding: 26px 4px 8px;
+}
+/* Les pièces jointes : la file sous la lettre, sobre. */
+.pieces-titre {
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  font-size: 15px;
+  margin: 26px 0 6px;
+}
+.pieces {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.pieces li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.pieces .titre-piece { color: var(--ink); }
+.pieces .quand-piece {
+  margin-left: 8px;
+  color: var(--soft);
+  font-size: 13px;
+}
