@@ -4,6 +4,10 @@
  * aucun flux n'est encore ingéré (base vierge), la file est donc VIDE
  * et dite telle quelle. Le branchement data (route API parsing RSS)
  * est la tranche suivante — jamais enjambée.
+ *
+ * Rangée 26e : le compteur honnête porte désormais le lien réel vers
+ * la page Connexion (« Vos flux ») — la navigation nav de la maquette
+ * V3 est une tranche future ; ce lien seul dit vrai.
  */
 import VueUne from "../components/une";
 import { composerUne } from "../lib/une";
@@ -16,6 +20,12 @@ export default async function Page() {
   return (
     <main>
       <VueUne une={une} />
+      <p className="compteur-ligne">
+        vos flux se gèrent sur la page{" "}
+        <a className="vers-flux" href="/connexion">
+          Connexion
+        </a>
+      </p>
     </main>
   );
 }
