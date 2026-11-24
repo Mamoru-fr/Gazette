@@ -1,13 +1,14 @@
 import type { ArticleModel } from "../lib/article";
 import VueEcouter from "./ecouter";
+import VueQuestionner from "./questionner";
 
 /**
  * Gazette — la vue article (tranche UI 3, rangée 22e).
  * Une colonne, du texte, le contenant jamais mangeur du contenu (maquette
- * V3 validée). Les coins sticky Écouter/Questionner de la maquette ne
- * sont PAS posés : non branchés ils seraient décoratifs (rejet gravé) —
- * ils reviendront avec la voix speechSynthesis et le pré-message branchés.
- * Zéro script inline : la CSP barre, la page n'en demande pas.
+ * V3 validée). Les deux coins sticky sont posés et BRANCHÉS depuis les
+ * rangées 23e (Écouter, speechSynthesis) et 25e (Questionner,
+ * pré-message) : chacun branché ou rien (rejet gravé). Zéro script
+ * inline : la CSP barre, la page n'en demande pas.
  */
 function VueArticle({ article }: { article: ArticleModel }) {
   return (
@@ -51,6 +52,7 @@ function VueArticle({ article }: { article: ArticleModel }) {
         </p>
       </article>
       <VueEcouter article={article} />
+      <VueQuestionner article={article} />
     </div>
   );
 }

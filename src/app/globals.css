@@ -114,3 +114,66 @@ details.plus summary {
 @media (max-width: 640px) {
   .coin { left: 12px; bottom: 12px; padding: 8px 14px; }
 }
+
+
+/* — Tranche rangée 25e : le coin Questionner + le repli partagé des
+   étiquettes (maquette V3 : au défilement, les textes s'enlèvent et ne
+   restent que les symboles — une seule passe de JS pose la classe,
+   le CSS habille les DEUX coins, jamais deux parchemins). */
+.coin.coin-questionner { left: auto; right: 18px; }
+html.coins-replie .coin span { display: none; }
+.panneau-question {
+  position: fixed;
+  right: 18px;
+  bottom: 76px;
+  width: min(92vw, 30rem);
+  max-height: min(60vh, 30rem);
+  overflow: auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(55, 49, 42, 0.15);
+  z-index: 30;
+}
+.panneau-question h2 {
+  font-size: 15px;
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  margin: 0 0 10px;
+}
+.panneau-question .pre-message {
+  font-family: inherit;
+  white-space: pre-wrap;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0;
+}
+.rangee-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.petit-bouton {
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.petit-bouton:hover { border-color: var(--accent); color: var(--accent); }
+.petit-bouton.accent { color: var(--accent); border-color: var(--accent); }
+.petit-bouton:disabled { opacity: 0.5; cursor: default; }
+@media (max-width: 640px) {
+  .coin.coin-questionner { left: auto; right: 12px; }
+  .panneau-question { left: 12px; right: 12px; width: auto; bottom: 68px; }
+}
