@@ -32,9 +32,9 @@ Une **PWA (web app installable)** qui rassemble et habille l'actualité — con�
 
 ## 🚦 Les trois gates (jamais enjambés)
 
-1. **Gate 1 — validation des specs** : ✅ validée le 22/11/2026 ([issue #1](issues/1), fermée par le verdict).
-2. **Gate 2 — validation de la maquette** : **remaquettage v2 posé** — huit pages HTML/CSS (aucun SVG), deux partis au choix du client : **le kiosque** et **la bibliothèque de presse**, en entrée et en article, mobile ET desktop — sommaire : `specs/maquettes-v2/index.html` — verdict attendu sur l'[issue #2](issues/2).
-3. **Gate 3 — validation de la stack** : proposition Ada avec justification pédagogique et alternative écartée — dont la recommandation base de données (externe si retenue ; le client crée la base et fournit l'ID) — après le verdict de la maquette.
+1. **Gate 1 — validation des specs** : ✅ VALIDÉE le 22/11/2026 ([issue #1](issues/1), fermée par le verdict du client).
+2. **Gate 2 — validation de la maquette** : ✅ VALIDÉE le 22/11/2026 — maquette V3 immersive (sidebar desktop / bottom bar mobile, icônes SVG classiques), [issue #2](issues/2) fermée, PR #4 fusionnée dans main.
+3. **Gate 3 — validation de la stack** : ✅ VALIDÉE le 22/11/2026 — **Next.js** (PWA installable), base PostgreSQL externe vérifiée, [issue #5](issues/5) fermée, PR #6 fusionnée. Le code est déverrouillé depuis ce verdict.
 
 Rien ne saute une étape. Chaque gate vit dans son issue, fermée par le verdict du client.
 
@@ -43,9 +43,9 @@ Rien ne saute une étape. Chaque gate vit dans son issue, fermée par le verdict
 Le projet suit un **GitFlow adapté à une petite équipe avec gates** — le but : n'importe qui arrive et comprend tout de suite.
 
 - `main` — la branche de vérité : toujours présentable, protégée par les gates et par relecture.
-- `develop` — la branche d'intégration, ouverte dès le début du code (gate 3 validée).
+- `develop` — la branche d'intégration, OUVERTE depuis le 23/11/2026 : le code y vit tranche par tranche, chaque push devant sa CI verte (la page Actions se lit à chaque traversée).
 - `feature/<nom>` — une tranche par branche, nommée sur le besoin (`feature/une`, `feature/connexion`, `feature/lecture-vocale`…), une issue correspondante, fermée par PR relue.
-- `docs/*` — documentation seule (specs, registre) : aujourd'hui les documents vivent directement sur `main` en avance de phase ; dès l'ouverture du code, chaque doc passe par sa branche.
+- `docs/*` — documentation seule (specs, registre, README) : depuis l'ouverture du code, chaque doc passe par sa branche et fusionne par pull request — `main` est sacrée.
 - `hotfix/*` — réparation urgente hors tranche, tracée au registre comme incident.
 
 Conventions de commit : `docs:`, `feat:`, `fix:`, `gate:` (consignation d'un verdict). Le registre `PROJET.md` tient le journal de chaque push.
@@ -59,9 +59,12 @@ Conventions de commit : `docs:`, `feat:`, `fix:`, `gate:` (consignation d'un ver
 
 ## 🧭 Où on en est (mis à jour à chaque tranche)
 
-- ✅ Gate 1 : spec fonctionnelle validée par le client (22/11/2026).
-- 🔄 Gate 2 : remaquettage v2 posé (kiosque + bibliothèque de presse, mobile et desktop) — verdict client attendu sur l'issue #2.
-- 📅 Gate 3 : proposition de stack après le verdict maquette.
+- ✅ Gate 1 : spec fonctionnelle validée par le client (22/11/2026) — issue #1 fermée.
+- ✅ Gate 2 : maquette V3 validée par le client (22/11/2026) — issue #2 fermée, PR #4 fusionnée.
+- ✅ Gate 3 : stack Next.js validée par le client (22/11/2026) — issue #5 fermée, PR #6 fusionnée ; la base externe (PostgreSQL 18.7) est vérifiée et vierge, sa clé ne vit jamais dans ce repo.
+- 🔄 **Le code est en chantier sur `develop`** — huit tranches UI déjà servies au vrai code : la Une, l'article, la voix (Écouter), le questionnement (Questionner + pré-message), la page Connexion, la section Informateur, la navigation V3 complète. Chaque tranche : modèle pur + banc jumeau rouge d'abord + page à la vérité (base vierge = file VIDE honnête, jamais un simulacre).
+- 📅 **Prochaines tranches** : ingestion des flux (route API + migrations) — derrière les clés d'hébergement du client ; la lockfile du banc local reste la dette de Brunel.
+- 🟢 CI : verte au dernier push de `develop` (run #27).
 
 ## 🗒️ Notes du client gravées
 
